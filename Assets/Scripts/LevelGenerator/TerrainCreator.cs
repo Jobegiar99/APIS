@@ -18,11 +18,6 @@ public class TerrainCreator
         public HashSet<Vector2Int> generalVisitedSet = new HashSet<Vector2Int>();
 
         /// <summary>
-        /// The matrix that will contain the information of the terrain
-        /// </summary>
-        public List<List<byte>> level = new List<List<byte>>();
-
-        /// <summary>
         /// The percentage of visited cells compared to the total amount of cells
         /// </summary>
         float levelSize;
@@ -30,7 +25,7 @@ public class TerrainCreator
         /// <summary>
         /// Starting Seeker's position
         /// </summary>
-        Vector2Int seeker;
+       public  Vector2Int seeker;
 
         /// <summary>
         /// The list of current cells visited by Seeker
@@ -43,15 +38,21 @@ public class TerrainCreator
         int size;
 
         /// <summary>
+        /// The matrix that will contain the information of the terrain
+        /// </summary>
+        public List<List<byte>> terrain = new List<List<byte>>();
+
+        /// <summary>
         /// Starting Wanderer's position
         /// </summary>
-        Vector2Int wanderer;
+        public Vector2Int wanderer;
 
        
 
         #endregion
 
         #region Constructor
+
         public TerrainCreator(Vector2Int wanderer, Vector2Int seeker, int size, float lSize)
         {
                 this.wanderer = wanderer;
@@ -79,7 +80,7 @@ public class TerrainCreator
                                 (seekerVisited.Count > 0)
                         )
                 {
-                        level[w.x][w.y] = 1;
+                        terrain[w.x][w.y] = 1;
                         seekerVisited.Add(s);
                         generalVisited.Add(w);
                         generalVisitedSet.Add(w);
@@ -114,7 +115,7 @@ public class TerrainCreator
                         {
                                 row.Add(0);
                         }
-                        level.Add(row);
+                        terrain.Add(row);
                 }
         }
 
@@ -176,7 +177,7 @@ public class TerrainCreator
                 {
                         foreach (Vector2Int p in seekerVisited)
                         {
-                                level[p.x][p.y] = 1;
+                                terrain[p.x][p.y] = 1;
                                 generalVisited.Add(p);
                                 generalVisitedSet.Add(p);
                         }

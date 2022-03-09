@@ -26,16 +26,16 @@ public class LevelInformation
                                 break;
 
                         case "Normal":
-                                size = 40;
+                                size = 50;
                                 break;
 
                         case "Hard":
-                                size = 50;
+                                size = 80;
                                 break;
                 }
 
                 if (seed == "")
-                        Random.InitState(Random.Range(-10000, 10000));
+                        Random.InitState(Random.Range(int.MinValue, int.MaxValue));
                 else
                         Random.InitState (seed.GetHashCode());
 
@@ -43,18 +43,11 @@ public class LevelInformation
                 Vector2Int seeker = new Vector2Int(size - 1, Random.Range(0, size));
 
                 float levelSize = Random.Range(0.45f, 0.8f);
+
                 TerrainCreator terrain = new TerrainCreator(wanderer, seeker, size, levelSize);
-                string s = "";
-                for (int i = 0; i < size; i++)
-                {
-                        string a = "|";
-                        for(int j = 0; j < size; j++)
-                        {
-                                a += (terrain.level[i][j] == 0) ? "x|": "  |";
-                        }
-                        s += a + "|\n";
-                }
-                Debug.Log(s);
+                TerrainBuilder builder = new TerrainBuilder(ref terrain.level, ref size,ref terrain.wanderer,ref terrain.seeker);
+
+ 
         }
 
         #endregion
