@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 public class TerrainBuilder
 {
 
+        public List<Vector2Int> entrances = new List<Vector2Int>();
+
         #region Constructor
         /// <summary>
         /// Builds the terrain in the game's world
@@ -90,6 +92,9 @@ public class TerrainBuilder
                 {
                         for (int row = 0; row < newSize; row++)
                         {
+                                if (column == 0 || row == 0 || column == newSize - 1 || row == newSize - 1)
+                                        entrances.Add(new Vector2Int(row, column));
+
                                 if (terrain[row][column] == 0)
                                 {
                                         blockedTilemap.SetTile(new Vector3Int(row, column, 0), blockedTile);

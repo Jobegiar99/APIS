@@ -12,6 +12,9 @@ public class LevelInformation
 
         List<List<byte>> level;
 
+        public List<Vector2Int> entrances = new List<Vector2Int>();
+
+        public List<List<byte>> terrainMatrix;
         #endregion
         
         #region Constructor
@@ -45,9 +48,9 @@ public class LevelInformation
                 float levelSize = Random.Range(0.45f, 0.8f);
 
                 TerrainCreator terrain = new TerrainCreator(wanderer, seeker, size, levelSize);
-                TerrainBuilder builder = new TerrainBuilder(ref terrain.level, ref size,ref terrain.wanderer,ref terrain.seeker);
-
- 
+                TerrainBuilder builder = new TerrainBuilder(ref terrain.terrain, ref size);
+                entrances = builder.entrances;
+                terrainMatrix = terrain.terrain; 
         }
 
         #endregion

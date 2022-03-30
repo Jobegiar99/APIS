@@ -4,30 +4,27 @@ using UnityEngine;
 
 public class PopulationManager : MonoBehaviour
 {
-
-        public List<GameObject> botPrefab;
-        public int populationSize = 100;
-        List<GameObject> population = new List<GameObject>();
+        
+        public GameObject botPrefab;
+        public int populationSize = 50;
+        public List<GameObject> population = new List<GameObject>();
         int generation = 1;
-        GUIStyle guiStyle = new GUIStyle();
-        Point goal;
-        float trialTime = 0;
-        public int bots = 50;
+
         // Start is called before the first frame update
         void Start()
         {
+                
                 for (int i = 0; i < populationSize; i++)
                 {
 
-                        GameObject bot = Instantiate(
+                        GameObject bot = 
+                                Instantiate(
                                         botPrefab,
                                         transform.position,
-                                        transform.rotation
+                                        Quaternion.identity
                                 );
 
-                        bot.GetComponent<Brain>().dnaLength = Random.Range(5, 15);
-                        bot.GetComponent<Brain>().Init(goal);
-
+                        bot.GetComponent<Brain>().Init();
                         population.Add(bot);
                 }
         }
@@ -35,44 +32,32 @@ public class PopulationManager : MonoBehaviour
         float FitnessFunction(GameObject bot)
         {
                 Brain brain = bot.GetComponent<Brain>();
-                if (brain.dna.furtherstDistance == 0)
-                        return int.MaxValue;
-
-                float fitness = (brain.dna.visitedCells.Count) / (brain.dna.furtherstDistance);
-
-
-
-                return fitness;
+                float productivePercentage = brain.productiveTime / brain.timeAlive;
+                float unproductivePercentage = 1 - productivePercentage;
+                return productivePercentage - unproductivePercentage;
         }
 
-        GameObject Breed(GameObject parent1, GameObject parent2, bool canMutate)
+        GameObject Breed(GameObject parent1, GameObject parent2)
         {
 
                 GameObject offspring =
                         Instantiate(botPrefab, transform.position, transform.rotation);
 
                 Brain brain = offspring.GetComponent<Brain>();
-                brain.dnaLength = (Random.Range(0, 100) % 2 == 0) ? parent1.GetComponent<Brain>().dnaLength : parent2.GetComponent<Brain>().dnaLength;
+                brain.Init();
 
-
-                if (Random.Range(0f, 1f) <= 0.55f && canMutate)
+                if (Random.Range(0f, 1f) <= 0.35f)
                 {
-                        brain.dnaLength += Random.Range(1, 6);
-                        brain.Init(goal);
-                        brain.dna.Mutate();
+                        brain.dna.Mutate(ref GameObject.Find("Main Camera").GetComponent<LevelInformation>().entrances);
                 }
                 else
-                {
-                        brain.Init(goal);
+                {  
                         brain.dna.Combine
                         (
                                 parent1.GetComponent<Brain>().dna,
                                 parent2.GetComponent<Brain>().dna
                         );
                 }
-
-
-
                 return offspring;
         }
 
@@ -82,39 +67,18 @@ public class PopulationManager : MonoBehaviour
                         population.OrderBy(bot => FitnessFunction(bot)).ToList();
     
                 population.Clear();
+
                 int startingPos = sortedList.Count - (int)(sortedList.Count / 2.0f) - 1;
+
                 for (int i = startingPos - 1; i < sortedList.Count - 1; i++)
                 {
-                        bool canMutate = (FitnessFunction(sortedList[i]) == int.MaxValue) ? false : true;
-
-                        if (Random.Range(0f, 1f) < 0.3f)
-                        {
-                                population.Add(Breed(sortedList[i], sortedList[sortedList.Count - 1], canMutate));
-                                population.Add(Breed(sortedList[sortedList.Count - 1], sortedList[i], canMutate));
-                        }
-                        else
-                        {
-                                population.Add(Breed(sortedList[i], sortedList[i + 1], canMutate));
-                                population.Add(Breed(sortedList[i + 1], sortedList[i], canMutate));
-                        }
-
-
+                        population.Add(Breed(sortedList[i], sortedList[i + 1]));
+                        population.Add(Breed(sortedList[i + 1], sortedList[i]));
                 }
                 for (int i = 0; i < sortedList.Count; i++)
                 {
                         Destroy(sortedList[i].gameObject);
                 }
                 generation++;
-        }
-
-        private void Update()
-        {
-                trialTime += Time.deltaTime;
-                if (bots <= 0)
-                {
-                        BreedNewPopulation();
-                        bots = populationSize;
-                        trialTime = 0;
-                }
         }
 }
