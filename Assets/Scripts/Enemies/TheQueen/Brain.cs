@@ -3,20 +3,32 @@ using System.Collections.Generic;
 public class Brain : MonoBehaviour
 {
         public DNA dna;
-        public int dnaLength;
-        List<List<bool>> level;
+
         public float timeAlive = 0;
-        public int damageDealt = 0;
+        public float productiveTime = 0;
+        public float unprodictiveTime = 0;
+        public bool alive = true;
+
+        public StateEnemyState enemyState;
         // Start is called before the first frame update
         public void Init()
         {
-                dna = new DNA(dnaLength, 4);
-                StartCoroutine(Move());
+                dna = new DNA(ref GameObject.Find("Main Camera").GetComponent<LevelInformation>().entrances);    
         }
 
-
-        rivate void Update()
+        private void Update()
         {
-                timeAlive += Time.deltaTime;
+                if (alive)
+                {
+                        timeAlive += Time.deltaTime;
+                        if (enemyState.state == StateEnemyState.STATE.enemyAttack)
+                        {
+                                productiveTime += Time.deltaTime;
+                        }
+                        else
+                        {
+                                unprodictiveTime += Time.deltaTime;
+                        }
+                }
         }
 }
