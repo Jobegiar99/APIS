@@ -7,7 +7,7 @@ public class LevelInformation
         #region Parameters
 
         string difficulty;
-
+        public byte beaconAmount;
         string seed;
 
         List<List<byte>> level;
