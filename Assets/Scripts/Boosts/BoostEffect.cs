@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
         fileName = "BoostEffect", 
-        menuName = "ScriptableObjects/Boosts", 
+        menuName = "ScriptableObjects/Boosts/Boost Effect", 
         order = 1
 )]
 public class BoostEffect : ScriptableObject

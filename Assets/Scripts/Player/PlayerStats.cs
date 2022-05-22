@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
         fileName = "PlayerStats",
-        menuName = "ScriptableObjects/Player",
+        menuName = "ScriptableObjects/Player/Player Stats",
         order = 1
 )]
 public class PlayerStats:ScriptableObject
