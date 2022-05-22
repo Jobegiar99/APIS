@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
         fileName = "BoostNode",
-        menuName = "ScriptableObjects/Boosts",
+        menuName = "ScriptableObjects/Boosts/Boost Node",
         order = 2
 )]
 public class BoostNode :ScriptableObject

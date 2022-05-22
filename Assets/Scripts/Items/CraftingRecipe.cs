@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
         fileName = "CraftingRecipe",
-        menuName = "ScriptableObjects/Item",
+        menuName = "ScriptableObjects/Items/Crafting Recipe",
         order = 2
 )]
 public class CraftingRecipe : ScriptableObject

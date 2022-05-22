@@ -19,7 +19,9 @@ public class StateWeaponAttack : StateWeaponState
                 base.Update();
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                        weaponController.ammo--;
                         //shoot projectile;
+                        Debug.Log("ATTACK!!");
                         stage = STAGE.Exit;
                 }
         }
@@ -32,6 +34,5 @@ public class StateWeaponAttack : StateWeaponState
                 
                 else
                         nextState = new StateWeaponNoAmmo(myGameObject);
-                
         }
 }

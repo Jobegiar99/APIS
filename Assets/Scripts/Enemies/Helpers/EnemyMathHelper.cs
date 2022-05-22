@@ -20,7 +20,7 @@ public class EnemyMathHelper
         {
                 { StatePlaceableState.STATE.placeableSetTarget,0.25f },
                 {StatePlaceableState.STATE.placeableAttack, 1f },
-                {StatePlaceableState.STATE.placeableReload, 0.5f },
+                {StatePlaceableState.STATE.placeableCooldown, 0.5f },
                 {StatePlaceableState.STATE.placeableNoAmmo, 0f }
         };
 
@@ -176,9 +176,10 @@ public class EnemyMathHelper
                 catch
                 {
                         Placeable placeable = objective.GetComponent<Placeable>();
-                        if (placeable.placeableType == "hostile")
+                        HostilePlaceable hostilePlaceable = objective.GetComponent<HostilePlaceable>();
+                        if (placeable == null)
                         {
-                                return GetHostileInfo(placeable);
+                                return GetHostileInfo(hostilePlaceable);
 
                         }
                         return GetNeutralPlaceableInfo(placeable);
@@ -202,25 +203,25 @@ public class EnemyMathHelper
                 return firePowerPercentage * hpPercentage * weaponValues[weaponController.state];
         }
 
-        private float GetHostileInfo(Placeable placeable)
+        private float GetHostileInfo(HostilePlaceable placeable)
         {
                 HostilePlaceableInformation hostileInfo = objective.GetComponent<HostilePlaceableInformation>();
-                float hpPercentage = (float)placeable.currentHP / (float)hostileInfo.hp;
+                float hpPercentage = (float)placeable.hp / (float)hostileInfo.hp;
                 float attackControl = (hostileInfo.attack >= 10)
                                                         ? Mathf.Pow(10, hostileInfo.attack.ToString().Length - 1)
                                                         : 10;
                 float firePowerPercentage =
-                        ((float)hostileInfo.attack * (float)hostileInfo.cooldown);
+                        ((float)hostileInfo.attack * (float)hostileInfo.attackCooldown);
 
                 firePowerPercentage /= attackControl;
-                StatePlaceableState placeableState = placeable.state;
+                StatePlaceableState placeableState = (StatePlaceableState)placeable.state;
                 return firePowerPercentage * hpPercentage * placeableValues[placeableState.state];
         }
 
         private float GetNeutralPlaceableInfo(Placeable placeable)
         {
                 PlaceableInformation placeableInfo = objective.GetComponent<PlaceableInformation>();
-                float hpPercentage = (float)placeable.currentHP / (float)placeableInfo.hp;
+                float hpPercentage = (float)placeable.hp / (float)placeableInfo.hp;
                 return hpPercentage;
         }
 }

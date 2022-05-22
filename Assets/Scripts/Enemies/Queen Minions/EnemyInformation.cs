@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
         fileName ="EnemyInformation",
-        menuName = "ScriptableObjects/Enemies/EnemyInformation",
+        menuName = "ScriptableObjects/Enemies/Enemy Information",
         order = 1)]
 public class EnemyInformation : ScriptableObject
 {
@@ -29,7 +29,6 @@ public class EnemyInformation : ScriptableObject
         [SerializeField]
         public float healRate;
 
-        [SerializeField]
         public List<EnemyInformation> otherEnemyInfo;
 
 }
