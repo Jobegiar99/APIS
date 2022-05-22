@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StateEnemyState : State
 {
-        public enum STATE
+        public new enum STATE
         {
                 enemyAttack, enemyMoveToTarget,
                 enemyFlee, enemyHeal, enemyDie,
                 enemyChooseTarget
         }
-        public STATE state;
+        public new STATE state;
         public GameObject objective;
 
         public StateEnemyState(GameObject myGo, GameObject objt)
