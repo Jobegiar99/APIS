@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class HostilePlaceableInformation : PlaceableInformation
 {
-       public  int targetType;
         public int rounds;
         public int projectilesPerRound;
         public int attack;
-        public float cooldown;
+        public float attackCooldown;
+        public float attackRange;
+        public float roundCooldown;
 }

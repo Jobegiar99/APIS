@@ -7,16 +7,19 @@ public class StatePlaceableState : State
         public new enum STATE
         {
                 placeableSetTarget, placeableAttack,
-                placeableReload, placeableNoAmmo
+                placeableCooldown, placeableNoAmmo
         }
 
         public new STATE state;
         public GameObject objective;
+        public HostilePlaceable hostilePlaceable;
 
-        public StatePlaceableState(GameObject myGo, GameObject objective)
+        public StatePlaceableState(GameObject myGo, GameObject obj)
                 : base(myGo)
         {
                 myGameObject = myGo;
-                this.objective = objective;
+                objective = obj;
+                hostilePlaceable = myGameObject.GetComponent<HostilePlaceable>();
+                
         }
 }
