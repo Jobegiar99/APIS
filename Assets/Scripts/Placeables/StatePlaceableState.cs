@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class StatePlaceableState : State
 {
-        public enum STATE
+        public new enum STATE
         {
                 placeableSetTarget, placeableAttack,
                 placeableReload, placeableNoAmmo
         }
-        public STATE state;
+
+        public new STATE state;
         public GameObject objective;
 
         public StatePlaceableState(GameObject myGo, GameObject objective)

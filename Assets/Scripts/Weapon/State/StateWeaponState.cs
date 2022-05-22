@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class StateWeaponState : State
 {
-        public enum STATE
+        public  new enum STATE
         {
                 weaponAttack,
                 weaponReload,
                 weaponCooldown,
                 weaponNoAmmo
         }
-        public STATE state;
+        public new STATE state;
+        public WeaponController weaponController;
 
         public StateWeaponState(GameObject myGo)
                 : base(myGo)
         {
                 this.myGameObject = myGo;
+                this.weaponController = myGo.GetComponent<WeaponController>();
         }
 }

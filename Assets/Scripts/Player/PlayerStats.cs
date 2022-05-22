@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats 
+[CreateAssetMenu(
+        fileName = "PlayerStats",
+        menuName = "ScriptableObjects/Player",
+        order = 1
+)]
+public class PlayerStats:ScriptableObject
 {
-        public int hp;
-        public int attack;
-        public float cooldown;
+        [SerializeField] public int attack;
+        [SerializeField] public float cooldown; //update enemy decision class
+        [SerializeField] public int hp;
+        [SerializeField] public int defense;
+        [SerializeField] public float moveSpeed;
+        [SerializeField] public List<BoostNode> activeBoosts;
 }

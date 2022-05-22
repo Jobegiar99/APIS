@@ -9,6 +9,10 @@ public class State
         protected GameObject myGameObject;
 
         
+        public enum STATE
+        {
+
+        };
 
         public  enum STAGE
         {
@@ -16,7 +20,7 @@ public class State
         };
 
         public  STAGE stage;
-        
+        public STATE state;
 
 
         public State(GameObject go)

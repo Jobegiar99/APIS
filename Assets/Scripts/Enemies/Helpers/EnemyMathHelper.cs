@@ -189,6 +189,7 @@ public class EnemyMathHelper
         private float GetPlayerInfo()
         {
                 PlayerBrain playerBrain = objective.GetComponent<PlayerBrain>();
+                StateWeaponState weaponController = (StateWeaponState) objective.GetComponent<WeaponController>().state;
                 PlayerStats playerStats = objective.GetComponent<PlayerStats>();
                 float hpPercentage = (float)playerBrain.currentHP / (float)playerStats.hp;
                 float attackControl = (playerStats.attack >= 10)
@@ -198,7 +199,7 @@ public class EnemyMathHelper
                         ((float)playerStats.attack * (float)playerStats.cooldown);
                 firePowerPercentage /= attackControl;
 
-                return firePowerPercentage * hpPercentage * weaponValues[playerBrain.state.state];
+                return firePowerPercentage * hpPercentage * weaponValues[weaponController.state];
         }
 
         private float GetHostileInfo(Placeable placeable)
@@ -212,8 +213,8 @@ public class EnemyMathHelper
                         ((float)hostileInfo.attack * (float)hostileInfo.cooldown);
 
                 firePowerPercentage /= attackControl;
-
-                return firePowerPercentage * hpPercentage * placeableValues[placeable.state.state];
+                StatePlaceableState placeableState = placeable.state;
+                return firePowerPercentage * hpPercentage * placeableValues[placeableState.state];
         }
 
         private float GetNeutralPlaceableInfo(Placeable placeable)
