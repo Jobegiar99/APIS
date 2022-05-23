@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyMathHelper
 {
         GameObject myGameObject;
-        GameObject objective;
-        EnemyInformation myInfo;
-
+        public GameObject objective;
+        
         Dictionary<StateEnemyState.STATE, float> myStateValues = new Dictionary<StateEnemyState.STATE, float>
                 {
                         { StateEnemyState.STATE.enemyAttack ,1 },
@@ -32,12 +31,28 @@ public class EnemyMathHelper
                 {StateWeaponState.STATE.weaponNoAmmo,0f }
         };
 
+        Brain myBrain;
+        EnemyController myController;
+        List<Brain> otherBrains;
+        List<EnemyController> otherControllers;
 
         public EnemyMathHelper(GameObject go, GameObject objective)
         {
-                myGameObject = go;
+                this.myGameObject = go;
+                this.myBrain = go.GetComponent<Brain>();
+                this.myController = go.GetComponent<EnemyController>();
                 this.objective = objective;
-                myInfo = myGameObject.GetComponent<EnemyInformation>();
+                this.otherBrains = new List<Brain>();
+                this.otherControllers = new List<EnemyController>();
+
+                for(int i = 0; i < myBrain.fellowMinions.Count;i++)
+                {
+                        Brain otherBrain = myBrain.fellowMinions[i].GetComponent<Brain>();
+                        EnemyController otherController = myBrain.fellowMinions[i].GetComponent<EnemyController>();
+
+                        otherBrains.Add(otherBrain);
+                        otherControllers.Add(otherController);
+                }    
         }
         public float GetSuccessGuess()
         {
@@ -53,39 +68,32 @@ public class EnemyMathHelper
 
         private float GetMyInfo()
         {
+                float hpPercentage = (float)myController.hp / (float)myController.maxHP;
+                float highestDefense = myController.defense;
+                float strongestEnemy = myController.attack;
+                float fastestEnemy = myController.moveSpeed;
+                float highestAttackRange = myController.attackRange;
 
-                EnemyInformation myInfo =
-                         myGameObject.GetComponent<EnemyInformation>();
-
-                Brain myBrain = myGameObject.GetComponent<Brain>();
-
-                int currentHP = myGameObject.GetComponent<EnemyObject>().currentHP;
-                float hpPercentage = (float)currentHP / myInfo.hp;
-
-                float highestDefense = myInfo.defense;
-                float strongestEnemy = myInfo.attack;
-                float fastestEnemy = myInfo.moveSpeed;
-                float highestAttackRange = myInfo.attackRange;
-
-                for (int i = 0; i < myInfo.otherEnemyInfo.Count; i++)
+                for (int i = 0; i < myBrain.fellowMinions.Count; i++)
                 {
-                        GetMyInfoHelper(ref highestDefense, myInfo.otherEnemyInfo[i].defense);
-                        GetMyInfoHelper(ref strongestEnemy, myInfo.otherEnemyInfo[i].attack);
-                        GetMyInfoHelper(ref fastestEnemy, myInfo.otherEnemyInfo[i].moveSpeed);
-                        GetMyInfoHelper(ref highestAttackRange, myInfo.otherEnemyInfo[i].attackRange);
-
+                        GetMyInfoHelper(ref highestDefense, otherControllers[i].defense);
+                        GetMyInfoHelper(ref strongestEnemy, otherControllers[i].attack);
+                        GetMyInfoHelper(ref fastestEnemy, otherControllers[i].moveSpeed);
+                        GetMyInfoHelper(ref highestAttackRange, otherControllers[i].attackRange);
                 }
-                float resistancePercentage = myInfo.defense / highestDefense;
+                float resistancePercentage = myController.defense / highestDefense;
 
-                float attackPercentage = myInfo.attack / strongestEnemy;
-                float attackRangePercentage = myInfo.attackRange / highestAttackRange;
-                float speedPercentage = myInfo.moveSpeed / fastestEnemy;
+                float attackPercentage = (float)(myController.attack / strongestEnemy);
+                float attackRangePercentage = (float)(myController.attackRange / highestAttackRange);
+                float speedPercentage = (float)(myController.moveSpeed / fastestEnemy);
                 float strengthPercentage = (attackPercentage + attackRangePercentage + speedPercentage) / 3f;
                 float condition = hpPercentage + resistancePercentage + strengthPercentage;
                 condition /= 3f;
-                if (myStateValues[myBrain.enemyState.state] != 0)
+                StateEnemyState.STATE state =myBrain.enemyState.state;
+                float stateValue = myStateValues[state];
+                if (stateValue != 0)
                 {
-                        float dangerPercentage = myStateValues[myBrain.enemyState.state] - myBrain.dna.hostility;
+                        float dangerPercentage = stateValue - myBrain.dna.hostility;
                         if (dangerPercentage != 1)
                         {
                                 condition *= (1 - Mathf.Abs(dangerPercentage));
@@ -100,39 +108,32 @@ public class EnemyMathHelper
                         currentStat = statToCompare;
         }
 
-        public float GetFellowInfo()
+        private float GetFellowInfo()
         {
-                PopulationManager theQueen = GameObject.Find("The Queen").GetComponent<PopulationManager>();
-                List<GameObject> fellows = new List<GameObject>();
-                int sameTargetCount = 0;
-                for (int i = 0; i < theQueen.population.Count; i++)
+                float sameTargetCount = 0;
+                for (int i = 0; i < myBrain.fellowMinions.Count; i++)
                 {
-                        if (!theQueen.population[i].GetComponent<Brain>().alive)
+                        EnemyController otherController = myBrain.fellowMinions[i].gameObject.GetComponent<EnemyController>();
+                        Brain otherBrain = myBrain.fellowMinions[i].gameObject.GetComponent<Brain>();
+
+                        if (myBrain.enemyState.objective != otherBrain.enemyState.objective)
+                                continue;
+
+                        if (!otherBrain.alive)
                                 continue;
 
                         float distance = Vector2.Distance(
-                                        theQueen.population[i].transform.position,
-                                        myGameObject.transform.position);
+                                                otherBrain.gameObject.transform.position,
+                                                myGameObject.transform.position
+                                        );
 
                         if (distance > 10)
                                 continue;
 
-                        fellows.Add(theQueen.population[i]);
-                }
-
-                if (fellows.Count == 0)
-                        return 0;
-
-                for (int i = 0; i < fellows.Count; i++)
-                {
-                        Brain currentFellowBrain = fellows[i].GetComponent<Brain>();
-                        bool isAttacking = currentFellowBrain.enemyState.state == StateEnemyState.STATE.enemyAttack;
-                        bool isSameTarget = currentFellowBrain.enemyState.state == StateEnemyState.STATE.enemyAttack;
-                        if (isAttacking && isSameTarget)
+                        if (otherBrain.enemyState.objective == myBrain.enemyState.objective)
                                 sameTargetCount++;
                 }
-
-                return (float)sameTargetCount / (float)fellows.Count;
+                return (float)(sameTargetCount / sameTargetCount);
         }
         private float GetWorldInfo()
         {
@@ -163,7 +164,7 @@ public class EnemyMathHelper
 
                 float freePercentage = free / total;
                 float hostilePercentage = hostile / total;
-                float worldDanger = hostile / free;
+                float worldDanger = hostilePercentage / freePercentage;
                 return worldDanger;
         }
 
@@ -184,7 +185,6 @@ public class EnemyMathHelper
                         }
                         return GetNeutralPlaceableInfo(placeable);
                 }
-
         }
 
         private float GetPlayerInfo()

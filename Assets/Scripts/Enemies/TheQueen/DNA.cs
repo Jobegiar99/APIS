@@ -17,7 +17,6 @@ public class DNA
         public float weakness;
         private List<char> enemyTypes = new List<char> { 'A', 'B', 'C' };
         List<char> objectiveTypes = new List<char>() { 'P', 'B', 'T' };
-        private byte objectiveIndex = 0;
         #endregion
 
         #region Constructor
@@ -40,7 +39,7 @@ public class DNA
                 type = enemyTypes[Random.Range(0, enemyTypes.Count)];
                 entrance = entrances[Random.Range(0, entrances.Count)];
                 hostility = Random.Range(0.01f, 1f);
-                fear = Random.Range(0.01f, 0.5f);
+                fear = Random.Range(0.01f, 0.3f);
                 bravery = 1 - fear;
                 stamina = Random.Range(0.01f, 0.5f);
                 weakness = 1 - stamina;

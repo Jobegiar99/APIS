@@ -12,10 +12,18 @@ public class StateEnemyState : State
         }
         public new STATE state;
         public GameObject objective;
+        public Brain brain;
+        public EnemyController controller;
+        public EnemyMathHelper mathHelper;
 
-        public StateEnemyState(GameObject myGo, GameObject objt)
+        public StateEnemyState(GameObject myGo, GameObject obj)
                 :base(myGo)
         {
-                this.objective = objt;
+                this.myGameObject = myGo;
+                this.objective = obj;
+                this.brain = myGo.GetComponent<Brain>();
+                this.controller = myGo.GetComponent<EnemyController>();
+                this.mathHelper = brain.mathHelper;
+                mathHelper.objective = obj;
         }
 }
