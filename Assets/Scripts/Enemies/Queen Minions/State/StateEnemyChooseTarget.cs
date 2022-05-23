@@ -2,29 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateEnemyChooseTarget : State
+public class StateEnemyChooseTarget : StateEnemyState
 {
-        protected GameObject target;
-       
-        public StateEnemyChooseTarget(GameObject go)
-                : base(go)
-        {
-                this.myGameObject = go;
-                Brain brain = go.GetComponent<Brain>();
-                
-        }
 
+       
+        public StateEnemyChooseTarget(GameObject go,GameObject obj)
+                : base(go, obj) { }
 
         public override void Enter()
         {
                 base.Enter();
-
+                for (int i = 0; i < 3; i++)
+                        if(SelectTarget(brain.dna.objectives[i]))
+                                break;              
         }
 
         public override void Exit()
         {
                 base.Exit();
-               // nextState = new StateEnemyMoveToTarget(myGameObject);
+               nextState = new StateEnemyMoveToTarget(myGameObject,objective);
         }
 
         private bool SelectTarget(char currentOption)
@@ -32,7 +28,7 @@ public class StateEnemyChooseTarget : State
                 switch(currentOption){
                         case 'P':
                                 {
-                                        target = GameObject.Find("Player");
+                                        objective = GameObject.Find("Player");
                                         return true;
                                 }
                         case 'B':
@@ -41,12 +37,31 @@ public class StateEnemyChooseTarget : State
                                                 .GetComponent<LevelInformation>()
                                                         .beaconAmount;
 
-                                        target = GameObject.Find("BeaconContainer")
-                                                .transform.GetChild(Random.Range(0, beaconAmount))
+                                        if (beaconAmount == 0)
+                                                return false;
+
+                                        objective = GameObject.Find("BeaconContainer")
+                                                .transform.GetChild(Random.Range(0,beaconAmount))
                                                         .gameObject;
 
                                         return true;
                                              
+                                }
+                        case 'T':
+                                {
+
+                                        GameObject towerContainer = GameObject.Find("TowerContainer");
+
+                                        int towerAmount = towerContainer.transform.childCount;
+
+                                        if (towerAmount == 0)
+                                                return false;
+
+                                        objective = towerContainer.transform.GetChild(
+                                                                Random.Range(0, towerAmount)
+                                                ).gameObject;
+
+                                        return true;
                                 }
                 }
                 return false;

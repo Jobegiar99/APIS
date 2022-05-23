@@ -2,17 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateEnemyFlee : MonoBehaviour
+public class StateEnemyFlee : StateEnemyState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        int escapeFrames;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        float initialSuccessGuess;
+
+        public StateEnemyFlee(GameObject go, GameObject obj)
+                : base(go, obj) { }
+
+        public override void Enter()
+        {
+                base.Enter();
+                escapeFrames = (int) (100 * brain.dna.fear);
+                initialSuccessGuess = mathHelper.GetSuccessGuess();
+        }
+
+        public override void Update()
+        {
+                base.Update();
+                if (escapeFrames == 0)
+                {
+                        stage = STAGE.Exit;
+                        return;
+                }
+                Vector3 direction = myGameObject.transform.position - objective.transform.position;
+
+                myGameObject.transform.position += direction * Time.deltaTime * controller.moveSpeed;
+
+                escapeFrames--;
+        }
+
+        public override void Exit()
+        {
+                base.Exit();
+                float currentSuccessRate = mathHelper.GetSuccessGuess();
+
+                if (initialSuccessGuess <= currentSuccessRate && brain.dna.bravery >= currentSuccessRate)
+                        nextState = new StateEnemyMoveToTarget(myGameObject, objective);
+
+                else if (initialSuccessGuess <= currentSuccessRate && brain.dna.bravery >= currentSuccessRate)
+                        nextState = new StateEnemyChooseTarget(myGameObject, objective);
+
+                else if (initialSuccessGuess > currentSuccessRate)
+                        nextState = new StateEnemyHeal(myGameObject, objective);
+
+                else
+                        nextState = new StateEnemyHeal(myGameObject, objective);
+        }
 }

@@ -28,7 +28,4 @@ public class EnemyInformation : ScriptableObject
 
         [SerializeField]
         public float healRate;
-
-        public List<EnemyInformation> otherEnemyInfo;
-
 }
