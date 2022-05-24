@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-        [SerializeField] public List<GameObject> UIElements;
-        
+        [SerializeField] List<GameObject> UIElements;
+
         public void EnableUIElement(int index)
         {
                 if (index >= UIElements.Count)

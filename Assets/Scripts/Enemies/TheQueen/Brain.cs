@@ -7,17 +7,30 @@ public class Brain : MonoBehaviour
         public float timeAlive = 0;
         public float productiveTime = 0;
         public float unprodictiveTime = 0;
-        public bool alive = true;
+        public bool alive = false;
 
         public StateEnemyState enemyState;
         public List<GameObject> fellowMinions;
         public EnemyMathHelper mathHelper;
-        // Start is called before the first frame update
+        // Start is called before the first frame
+        // 
+        private void Start()
+        {
+                dna = new DNA(ref GameObject.Find("LevelManager").GetComponent<LevelManager>().info.entrances);
+        }
+
         public void Init()
         {
-                dna = new DNA(ref GameObject.Find("Main Camera").GetComponent<LevelInformation>().entrances);
+
                 enemyState = new StateEnemyChooseTarget(this.gameObject, null);
+
                 mathHelper = new EnemyMathHelper(gameObject, null);
+
+        }
+
+        public void BringToLife()
+        {
+                alive = true;
         }
 
         private void Update()

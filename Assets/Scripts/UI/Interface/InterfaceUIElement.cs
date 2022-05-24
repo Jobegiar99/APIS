@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface InterfaceUIElement 
 {
-        public void UIElementAction();
+        public virtual void UIElementAction() { }
 }

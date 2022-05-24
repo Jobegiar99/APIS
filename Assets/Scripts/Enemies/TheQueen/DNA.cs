@@ -17,6 +17,7 @@ public class DNA
         public float weakness;
         private List<char> enemyTypes = new List<char> { 'A', 'B', 'C' };
         List<char> objectiveTypes = new List<char>() { 'P', 'B', 'T' };
+        List<Vector2Int> entrances;
         #endregion
 
         #region Constructor
@@ -33,9 +34,9 @@ public class DNA
         /// <param name="entrances">Empty entrances within the level</param>
         public void RandomizeGenes(ref List<Vector2Int> entrances)
         {
-
+                this.entrances = entrances;
                 FillObjectives();
-           
+                
                 type = enemyTypes[Random.Range(0, enemyTypes.Count)];
                 entrance = entrances[Random.Range(0, entrances.Count)];
                 hostility = Random.Range(0.01f, 1f);
@@ -64,7 +65,7 @@ public class DNA
                 tolerance = parentB.tolerance;
         }
 
-        public void Mutate(ref List<Vector2Int> entrances)
+        public void Mutate()
         {
                 
                 switch(Random.Range(0, 3) ){
