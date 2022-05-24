@@ -33,9 +33,8 @@ public class StateEnemyChooseTarget : StateEnemyState
                                 }
                         case 'B':
                                 {
-                                        int beaconAmount = GameObject.Find("LevelSettings")
-                                                .GetComponent<LevelInformation>()
-                                                        .beaconAmount;
+                                        int beaconAmount = (int) GameObject.Find("LevelManager")
+                                                .GetComponent<LevelManager>().info.beaconAmount;
 
                                         if (beaconAmount == 0)
                                                 return false;

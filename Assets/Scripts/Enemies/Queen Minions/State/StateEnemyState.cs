@@ -24,6 +24,7 @@ public class StateEnemyState : State
                 this.brain = myGo.GetComponent<Brain>();
                 this.controller = myGo.GetComponent<EnemyController>();
                 this.mathHelper = brain.mathHelper;
-                mathHelper.objective = obj;
+                if(obj != null)
+                        mathHelper.objective = obj;
         }
 }
