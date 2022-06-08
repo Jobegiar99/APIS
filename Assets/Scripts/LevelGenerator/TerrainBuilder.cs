@@ -93,9 +93,7 @@ public class TerrainBuilder
                 {
                         for (int row = 0; row < newSize; row++)
                         {
-                                bool corner = column == 15 || row == 15 || column == newSize - 15 || row == newSize - 15;
-                                if (corner && terrain[row][column] != 0)
-                                        entrances.Add(new Vector2Int(row, column));
+                                
 
                                 if (terrain[row][column] == 0 )
                                 {
@@ -104,11 +102,12 @@ public class TerrainBuilder
                                 }
                                 else
                                 {
+                                        CheckIfFree(ref terrain, ref newSize, column, row);
                                         freeTilemap.SetTile(new Vector3Int(row, column, 0), freeTile);
                                         if (!placedPlayer)
                                         {
 
-                                                if (Random.Range(0, 1f) < 0.2f)
+                                                if (Random.Range(0, 1f) < 0.1f)
                                                 {
                                                         player.transform.position = new Vector2(row, column);
                                                         placedPlayer = true;
@@ -120,6 +119,22 @@ public class TerrainBuilder
                 }
         }
 
+        private void CheckIfFree(ref List<List<byte>> terrain, ref int newSize, int column, int row)
+        {
+               
+                for (int c = column - 3; c <= column + 3; c++)
+                {
+                        for(int r = row - 3; r <= row + 3; r++)
+                        {
+                                if (!(c > 0 && c < newSize && r > 0 && r < newSize))
+                                        return;
+                                if (terrain[r][c] == 0)
+                                        return;
+                                
+                        }
+                }
+                entrances.Add(new Vector2Int(row, column));
+        }
         /// <summary>
         /// Makes the matrix bigger
         /// </summary>

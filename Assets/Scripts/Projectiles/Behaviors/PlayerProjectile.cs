@@ -12,8 +12,8 @@ public class PlayerProjectile : MonoBehaviour
         // Start is called before the first frame update
         void OnEnable()
         {
-                direction.x *= Random.Range(0.5f,1);
-                direction.y *= Random.Range(0.5f, 1);
+                direction.x *= Random.Range(0.3f,1);
+                direction.y *= Random.Range(0.3f, 1);
                 direction = direction.normalized;
                 GetComponent<SpriteRenderer>().sprite = projectileSprites[Random.Range(0, projectileSprites.Count)];
                 

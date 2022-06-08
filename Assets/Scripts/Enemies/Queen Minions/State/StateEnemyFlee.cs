@@ -14,7 +14,6 @@ public class StateEnemyFlee : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
-                Debug.Log("FLEE");
                 state = STATE.enemyFlee;
                 escapeFrames = (int) (100 * brain.dna.fear);
                 initialSuccessGuess = mathHelper.GetSuccessGuess();
@@ -29,8 +28,8 @@ public class StateEnemyFlee : StateEnemyState
                         return;
                 }
                 Vector3 direction = myGameObject.transform.position - objective.transform.position;
-
-                myGameObject.transform.position += direction * Time.deltaTime * controller.moveSpeed;
+                direction = direction.normalized;
+                myGameObject.transform.position += direction * Time.deltaTime * controller.moveSpeed / 2;
 
                 escapeFrames--;
         }

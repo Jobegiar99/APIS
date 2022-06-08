@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerWeaponBehavior : MonoBehaviour, InterfaceWeaponBehavior
 {
         [SerializeField] Transform projectilePool;
+        [SerializeField] AudioSource soundEffects;
+        [SerializeField] AudioClip shotSound;
+        [SerializeField] AudioClip reloadSound;
         public Queue<GameObject> projectiles;
+
 
         public void Start()
         {
@@ -15,6 +19,9 @@ public class PlayerWeaponBehavior : MonoBehaviour, InterfaceWeaponBehavior
         }
         public void ShootProjectile()
         {
+                soundEffects.Stop();
+                soundEffects.clip = shotSound;
+                soundEffects.Play();
                 for (int i = 0; i < 8; i++)
                 {
                         GameObject projectile = projectiles.Dequeue();
@@ -32,4 +39,5 @@ public class PlayerWeaponBehavior : MonoBehaviour, InterfaceWeaponBehavior
                 }
 
         }
+        
 }

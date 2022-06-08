@@ -17,7 +17,6 @@ public class StateEnemyAttack : StateEnemyState
                 state = STATE.enemyAttack;
                 successGuess = mathHelper.GetSuccessGuess();
                 controller = myGameObject.GetComponent<EnemyController>();
-                Debug.Log("ATTACK " + successGuess.ToString());
         }
 
         public override void Update()

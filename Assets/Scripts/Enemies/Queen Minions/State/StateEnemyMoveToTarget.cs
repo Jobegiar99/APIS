@@ -17,6 +17,8 @@ public class StateEnemyMoveToTarget : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
+                if(objective == null)
+                        objective = GameObject.Find("Player");
                 state = STATE.enemyMoveToTarget;
                 initialSuccessGuess = mathHelper.GetSuccessGuess();
                 if (brain.dna.fear > initialSuccessGuess)
@@ -28,8 +30,8 @@ public class StateEnemyMoveToTarget : StateEnemyState
                 accuracy = controller.attackRange / 2f;
                 
                 agent = controller.GetComponent<NavMeshAgent>();
+
                 agent.enabled = true;
-                
         }
 
         public override void Update()

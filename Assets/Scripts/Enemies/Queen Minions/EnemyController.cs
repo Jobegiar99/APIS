@@ -24,6 +24,8 @@ public class EnemyController : MonoBehaviour
         #region StateHelpers
         public bool canHeal = true;
         public bool canAttack = true;
+        public bool alive = true;
+        private int semaphore = 1;
         #endregion
 
         #region Object Pooling
@@ -44,8 +46,14 @@ public class EnemyController : MonoBehaviour
                 this.defense = enemyInformation.defense;
                 this.attackRange = enemyInformation.attackRange;
                 this.healRate = enemyInformation.healRate;
+                
+                
+        }
+
+        public void InitPool()
+        {
                 projectiles = new Queue<GameObject>();
-                for(int i = 0; i < projectilePool.childCount; i++)
+                for (int i = 0; i < projectilePool.childCount; i++)
                 {
                         projectiles.Enqueue(projectilePool.GetChild(i).gameObject);
                 }
@@ -84,7 +92,13 @@ public class EnemyController : MonoBehaviour
 
         public void OnCollisionEnter2D(Collision2D collision)
         {
-                if (collision.gameObject.tag == "player projectile")
+
+                if (!this.gameObject.activeSelf)
+                {
+                        return;
+                }
+
+                else if(collision.gameObject.tag == "player projectile")
                 {
                         int totalDamage = collision.gameObject.GetComponent<PlayerProjectile>().damage;
                         totalDamage = (int)( totalDamage * defense);
@@ -94,10 +108,16 @@ public class EnemyController : MonoBehaviour
 
                         this.hp -= collision.gameObject.GetComponent<PlayerProjectile>().damage;
 
-                        if( hp <= 0)
+                        if (hp <= 0 && alive) 
                         {
+                                alive = false;
+                                GameObject.Find("The Queen").GetComponent<PopulationManager>().RemoveEnemy();
                                 this.gameObject.SetActive(false);
                         }
+                        
                 }
+
+
         }
+
 }

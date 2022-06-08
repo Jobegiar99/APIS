@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class Brain : MonoBehaviour
 {
-        public DNA dna;
+        [System.NonSerialized]public DNA dna;
 
         public float timeAlive = 0;
         public float productiveTime = 0;
@@ -15,29 +15,28 @@ public class Brain : MonoBehaviour
 
         LevelManager levelManager;
         // Start is called before the first frame
-        private void Start()
-        {
-                alive = false;
-        }
+
 
         public void Init()
         {
                 levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-
-                dna = new DNA(ref levelManager.levelInformation.entrances);
-                
+                this.dna = new DNA(ref levelManager.levelInformation.entrances);
                 enemyState = new StateEnemyChooseTarget(this.gameObject, null);
-
 
                 mathHelper = new EnemyMathHelper(gameObject, null);
 
                 gameObject.transform.Rotate(0.01f, 0, 0);
+                
+        }
+
+        public void BringToLife()
+        {
+                InvokeRepeating("Think", 0.01f, 0.1f);
         }
 
 
-        private void Update()
+        private void Think()
         {
-
                 transform.rotation = Quaternion.identity;
                 enemyState = (StateEnemyState)(enemyState.Process());
 

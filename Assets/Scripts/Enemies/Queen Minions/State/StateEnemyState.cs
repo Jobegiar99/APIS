@@ -20,7 +20,7 @@ public class StateEnemyState : State
                 :base(myGo)
         {
                 this.myGameObject = myGo;
-                this.objective = obj;
+                this.objective = GameObject.Find("Player") ;
                 this.brain = myGo.GetComponent<Brain>();
                 this.controller = myGo.GetComponent<EnemyController>();
                 this.mathHelper = brain.mathHelper;

@@ -23,9 +23,10 @@ public class UIGenerateLevel : MonoBehaviour
                 {
                         Random.InitState(Random.Range(int.MinValue, int.MaxValue));
                 }
+                
                 levelManager.GenerateLevel();
                 uiManager.EnableUIElement(index);
-                theQueen.StartRound();
+                theQueen.RoundManager();
                 music.clip = gameplay;
                 music.Play();
                 player.gameObject.SetActive(true);

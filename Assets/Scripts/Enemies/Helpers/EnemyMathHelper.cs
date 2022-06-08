@@ -59,11 +59,10 @@ public class EnemyMathHelper
                 float fellowInfo = GetFellowInfo();
                 float worldInfo = GetWorldInfo();
                 float objectiveInfo = GetObjectiveInfo();
-                Debug.Log(myInfo.ToString() + " " + fellowInfo.ToString() + " " + worldInfo.ToString() + " " + objectiveInfo.ToString());
                 float threatToTargetPercentage = (myInfo + fellowInfo) / 2f;
                 float threatToMePercentage = (worldInfo + objectiveInfo) / 2f;
                 float succesGuess = threatToTargetPercentage * (1 - threatToMePercentage);
-                Debug.Log(succesGuess);
+               
                 return succesGuess;
         }
 
