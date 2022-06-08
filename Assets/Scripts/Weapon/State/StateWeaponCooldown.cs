@@ -14,14 +14,12 @@ public class StateWeaponCooldown : StateWeaponState
                 weaponController = myGameObject.GetComponent<WeaponController>();
                 weaponController.canAttack = false;
                 weaponController.StartCoroutine(weaponController.StopCooldown());
+                weaponController.transform.parent.GetComponent<Animator>().SetTrigger("player_cooldown");
         }
 
         public override void Update()
         {
                 base.Update();
-
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                        Debug.Log("RELOADING!");
                 
                 if (!weaponController.canAttack)
                         return;

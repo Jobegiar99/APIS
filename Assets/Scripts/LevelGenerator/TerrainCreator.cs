@@ -145,10 +145,10 @@ public class TerrainCreator
                 List<Vector2Int> moves = new List<Vector2Int>() { up, down, left, right };
 
                 return moves.FindAll(p =>
-                                0 <= p.x &&
-                                p.x < size &&
-                                0 <= p.y &&
-                                p.y < size &&
+                                1 <= p.x &&
+                                p.x < size - 1 &&
+                                1 <= p.y &&
+                                p.y < size - 1 &&
                                 !generalVisitedSet.Contains(p)
                         );
 
@@ -184,7 +184,7 @@ public class TerrainCreator
 
                 }
                 seekerVisited.Clear();
-                return new Vector2Int(Random.Range(0, size), Random.Range(0, size ));
+                return new Vector2Int(Random.Range(1, size - 1), Random.Range(1, size - 1 ));
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ public class StateEnemyMoveToTarget : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
+                state = STATE.enemyMoveToTarget;
                 initialSuccessGuess = mathHelper.GetSuccessGuess();
                 if (brain.dna.fear > initialSuccessGuess)
                         stage = STAGE.Exit;
@@ -26,17 +27,21 @@ public class StateEnemyMoveToTarget : StateEnemyState
                 agent.updateUpAxis = false;
                 accuracy = controller.attackRange / 2f;
                 
+                agent = controller.GetComponent<NavMeshAgent>();
+                agent.enabled = true;
+                
         }
 
         public override void Update()
         {
                 base.Update();
                 float distance = Vector2.Distance(myGameObject.transform.position, objective.transform.position);
+              
                 if (distance > accuracy)
                         agent.SetDestination(objective.transform.position);
                 else
                 {
-                        agent.isStopped = true;
+                        agent.enabled = false;
                         stage = STAGE.Exit;
                 }
         }
@@ -44,6 +49,7 @@ public class StateEnemyMoveToTarget : StateEnemyState
         public override void Exit()
         {
                 base.Exit();
+
                 if (TargetIsDead() || brain.dna.fear > initialSuccessGuess)
                         nextState = new StateEnemyChooseTarget(myGameObject, null);
                 else
@@ -59,7 +65,8 @@ public class StateEnemyMoveToTarget : StateEnemyState
                 bool playerDied = playerBrain != null && playerBrain.currentHP == 0;
                 bool hostileDied = hostilePlaceable != null && hostilePlaceable.hp == 0;
                 bool placeableDied = placeable != null && placeable.hp == 0;
-                return playerBrain || hostileDied || placeableDied;
+
+                return playerDied || hostileDied || placeableDied;
         }
 
 }

@@ -6,14 +6,14 @@ public class EnemyMathHelper
 {
         GameObject myGameObject;
         public GameObject objective;
-        
+
         Dictionary<StateEnemyState.STATE, float> myStateValues = new Dictionary<StateEnemyState.STATE, float>
                 {
                         { StateEnemyState.STATE.enemyAttack ,1 },
                         {StateEnemyState.STATE.enemyMoveToTarget,0.5f},
                         {StateEnemyState.STATE.enemyFlee, 0.5f },
                         {StateEnemyState.STATE.enemyHeal, 0f }
-                };
+        };
 
         Dictionary<StatePlaceableState.STATE, float> placeableValues = new Dictionary<StatePlaceableState.STATE, float>
         {
@@ -27,7 +27,6 @@ public class EnemyMathHelper
         {
                 {StateWeaponState.STATE.weaponAttack , 1f},
                 {StateWeaponState.STATE.weaponCooldown, 0.5f },
-                {StateWeaponState.STATE.weaponReload, 0f },
                 {StateWeaponState.STATE.weaponNoAmmo,0f }
         };
 
@@ -45,14 +44,14 @@ public class EnemyMathHelper
                 this.otherBrains = new List<Brain>();
                 this.otherControllers = new List<EnemyController>();
 
-                for(int i = 0; i < myBrain.fellowMinions.Count;i++)
+                for (int i = 0; i < myBrain.fellowMinions.Count; i++)
                 {
                         Brain otherBrain = myBrain.fellowMinions[i].GetComponent<Brain>();
                         EnemyController otherController = myBrain.fellowMinions[i].GetComponent<EnemyController>();
 
                         otherBrains.Add(otherBrain);
                         otherControllers.Add(otherController);
-                }    
+                }
         }
         public float GetSuccessGuess()
         {
@@ -60,9 +59,11 @@ public class EnemyMathHelper
                 float fellowInfo = GetFellowInfo();
                 float worldInfo = GetWorldInfo();
                 float objectiveInfo = GetObjectiveInfo();
+                Debug.Log(myInfo.ToString() + " " + fellowInfo.ToString() + " " + worldInfo.ToString() + " " + objectiveInfo.ToString());
                 float threatToTargetPercentage = (myInfo + fellowInfo) / 2f;
                 float threatToMePercentage = (worldInfo + objectiveInfo) / 2f;
                 float succesGuess = threatToTargetPercentage * (1 - threatToMePercentage);
+                Debug.Log(succesGuess);
                 return succesGuess;
         }
 
@@ -89,7 +90,7 @@ public class EnemyMathHelper
                 float strengthPercentage = (attackPercentage + attackRangePercentage + speedPercentage) / 3f;
                 float condition = hpPercentage + resistancePercentage + strengthPercentage;
                 condition /= 3f;
-                StateEnemyState.STATE state =myBrain.enemyState.state;
+                StateEnemyState.STATE state = myBrain.enemyState.state;
                 float stateValue = myStateValues[state];
                 if (stateValue != 0)
                 {
@@ -119,25 +120,17 @@ public class EnemyMathHelper
                         if (myBrain.enemyState.objective != otherBrain.enemyState.objective)
                                 continue;
 
-                        if (!otherBrain.alive)
-                                continue;
-
-                        float distance = Vector2.Distance(
-                                                otherBrain.gameObject.transform.position,
-                                                myGameObject.transform.position
-                                        );
-
-                        if (distance > 10)
+                        if (!otherBrain.gameObject.activeSelf)
                                 continue;
 
                         if (otherBrain.enemyState.objective == myBrain.enemyState.objective)
                                 sameTargetCount++;
                 }
-                return (float)(sameTargetCount / sameTargetCount);
+                return (float)(sameTargetCount / myBrain.fellowMinions.Count);
         }
         private float GetWorldInfo()
         {
-                LevelInformation level = GameObject.Find("LevelManager").GetComponent<LevelInformation>();
+                LevelManager level = GameObject.Find("LevelManager").GetComponent<LevelManager>();
                 Vector2Int position =
                         new Vector2Int(
                                 (int)myGameObject.transform.position.x,
@@ -151,13 +144,16 @@ public class EnemyMathHelper
                         for (int col = position.y - 10; col < position.y + 10; col++)
                         {
                                 total++;
-                                if (level.terrainMatrix[row][col] == 1)
+                                if (row > 0 && row < level.levelInformation.terrainMatrix.Count && col > 0 && col < level.levelInformation.terrainMatrix.Count)
                                 {
-                                        free++;
-                                }
-                                if (level.terrainMatrix[row][col] == 2)
-                                {
-                                        hostile++;
+                                        if (level.levelInformation.terrainMatrix[row][col] == 1)
+                                        {
+                                                free++;
+                                        }
+                                        if (level.levelInformation.terrainMatrix[row][col] == 2)
+                                        {
+                                                hostile++;
+                                        }
                                 }
                         }
                 }
@@ -190,7 +186,7 @@ public class EnemyMathHelper
         private float GetPlayerInfo()
         {
                 PlayerBrain playerBrain = objective.GetComponent<PlayerBrain>();
-                StateWeaponState weaponController = (StateWeaponState) objective.GetComponent<WeaponController>().state;
+                StateWeaponState weaponController = (StateWeaponState)objective.GetComponent<WeaponController>().state;
                 PlayerStats playerStats = objective.GetComponent<PlayerStats>();
                 float hpPercentage = (float)playerBrain.currentHP / (float)playerStats.hp;
                 float attackControl = (playerStats.attack >= 10)
@@ -205,7 +201,10 @@ public class EnemyMathHelper
 
         private float GetHostileInfo(HostilePlaceable placeable)
         {
-                HostilePlaceableInformation hostileInfo = objective.GetComponent<HostilePlaceableInformation>();
+                if (placeable == null)
+                        return 1;
+
+                HostilePlaceableInformation hostileInfo = placeable.hostilePlaceableInfo;
                 float hpPercentage = (float)placeable.hp / (float)hostileInfo.hp;
                 float attackControl = (hostileInfo.attack >= 10)
                                                         ? Mathf.Pow(10, hostileInfo.attack.ToString().Length - 1)
@@ -220,7 +219,10 @@ public class EnemyMathHelper
 
         private float GetNeutralPlaceableInfo(Placeable placeable)
         {
-                PlaceableInformation placeableInfo = objective.GetComponent<PlaceableInformation>();
+                if (placeable == null)
+                        return 1;
+
+                PlaceableInformation placeableInfo = placeable.placeableInformation;
                 float hpPercentage = (float)placeable.hp / (float)placeableInfo.hp;
                 return hpPercentage;
         }

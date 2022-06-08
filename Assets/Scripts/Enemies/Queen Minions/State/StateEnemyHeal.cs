@@ -7,6 +7,12 @@ public class StateEnemyHeal : StateEnemyState
         public StateEnemyHeal(GameObject go, GameObject obj)
                 : base(go, obj) { }
 
+        public override void Enter()
+        {
+                base.Enter();
+                state = STATE.enemyHeal;
+                Debug.Log("HEAL");
+        }
         public override void Update()
         {
                 base.Update();

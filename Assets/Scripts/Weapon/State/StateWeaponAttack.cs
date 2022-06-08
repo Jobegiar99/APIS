@@ -19,9 +19,8 @@ public class StateWeaponAttack : StateWeaponState
                 base.Update();
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                        weaponController.ammo--;
-                        //shoot projectile;
-                        Debug.Log("ATTACK!!");
+                        weaponController.weaponBehavior.ShootProjectile();
+                        myGameObject.transform.parent.gameObject.GetComponent<Animator>().SetTrigger("player_attack");
                         stage = STAGE.Exit;
                 }
         }
@@ -29,7 +28,7 @@ public class StateWeaponAttack : StateWeaponState
         public override void Exit()
         {
                 base.Exit();
-                if(myGameObject.GetComponent<WeaponController>().ammo > 0)
+                if (myGameObject.GetComponent<WeaponController>().ammo > 0)
                         nextState = new StateWeaponCooldown(myGameObject);
                 
                 else

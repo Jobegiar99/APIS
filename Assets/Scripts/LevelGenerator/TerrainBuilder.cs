@@ -7,6 +7,7 @@ public class TerrainBuilder
 {
 
         public List<Vector2Int> entrances = new List<Vector2Int>();
+        bool placedPlayer = false;
 
         #region Constructor
         /// <summary>
@@ -14,12 +15,12 @@ public class TerrainBuilder
         /// </summary>
         /// <param name="terrain">Square matrix that contains the information of the level</param>
         /// <param name="terrainSize">Matrix size</param>
-        public TerrainBuilder(ref List<List<byte>> terrain, ref  int terrainSize)
+        public TerrainBuilder(ref List<List<byte>> terrain, ref  int terrainSize, GameObject player)
         {
                 int resizeRate = 3;
                 int newSize = terrainSize * resizeRate;
                 terrain = ResizeMatrix(ref terrain, resizeRate, terrainSize);
-                FillTilesetWithMatrixInfo(ref terrain, ref newSize);
+                FillTilesetWithMatrixInfo(ref terrain, ref newSize, player);
         }
         #endregion
 
@@ -80,7 +81,7 @@ public class TerrainBuilder
         /// </summary>
         /// <param name="terrain">Matrix that contains the information of the level</param>
         /// <param name="newSize">Matrix's size after resizing it</param>
-        private void FillTilesetWithMatrixInfo(ref List<List<byte>> terrain, ref int newSize)
+        private void FillTilesetWithMatrixInfo(ref List<List<byte>> terrain, ref int newSize,GameObject player)
         {
                 Tilemap freeTilemap = GameObject.Find("freeTilemap").GetComponent<Tilemap>();
                 Tilemap blockedTilemap = GameObject.Find("blockedTilemap").GetComponent<Tilemap>();
@@ -92,18 +93,29 @@ public class TerrainBuilder
                 {
                         for (int row = 0; row < newSize; row++)
                         {
-                                if (column == 0 || row == 0 || column == newSize - 1 || row == newSize - 1)
+                                bool corner = column == 15 || row == 15 || column == newSize - 15 || row == newSize - 15;
+                                if (corner && terrain[row][column] != 0)
                                         entrances.Add(new Vector2Int(row, column));
 
-                                if (terrain[row][column] == 0)
+                                if (terrain[row][column] == 0 )
                                 {
+
                                         blockedTilemap.SetTile(new Vector3Int(row, column, 0), blockedTile);
                                 }
                                 else
                                 {
                                         freeTilemap.SetTile(new Vector3Int(row, column, 0), freeTile);
-                                }
+                                        if (!placedPlayer)
+                                        {
 
+                                                if (Random.Range(0, 1f) < 0.2f)
+                                                {
+                                                        player.transform.position = new Vector2(row, column);
+                                                        placedPlayer = true;
+                                                }
+                                        }
+                                }
+                                
                         }
                 }
         }

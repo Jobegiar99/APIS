@@ -31,7 +31,7 @@ public class Placeable : MonoBehaviour
                 if (!canGetDamage)
                         return;
 
-                hp -= collision.gameObject.GetComponent<Projectile>().damage;
+                hp -= collision.gameObject.GetComponent<PlaceableProjectile>().damage;
                 if (hp <= 0)
                 {
                         StopAllCoroutines();

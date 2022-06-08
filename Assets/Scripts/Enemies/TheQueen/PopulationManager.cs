@@ -1,32 +1,28 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PopulationManager : MonoBehaviour
 {
         [SerializeField] Transform botContainer;
-
-        public GameObject botPrefab;
+        [SerializeField] Transform projectilePool;
+        [SerializeField] GameObject botPrefab;
         public int populationSize = 50;
         public List<GameObject> population = new List<GameObject>();
         int generation = 1;
 
-
-        // Start is called before the first frame update
-        void Start()
+        public void StartRound()
         {
                 for (int i = 0; i < populationSize; i++)
                 {
-                        GameObject bot = 
-                                Instantiate(
-                                        botPrefab,
-                                        transform.position,
-                                        Quaternion.identity
-                                );
-                        bot.GetComponent<Brain>().Init();
-                        population.Add(bot);
-                        bot.transform.SetParent(botContainer);
+                        GameObject enemy = Instantiate(botPrefab, new Vector3(20,20,0), Quaternion.identity);
+                        enemy.GetComponent<NavMeshAgent>().updateRotation = false;
+                        population.Add(enemy);
+                        enemy.transform.parent = botContainer;
+                        
                 }
+                InitEnemies();
         }
 
         float FitnessFunction(GameObject bot)
@@ -37,10 +33,11 @@ public class PopulationManager : MonoBehaviour
                 return productivePercentage - unproductivePercentage;
         }
 
-        void Breed(GameObject parent1, GameObject parent2, int listIndex)
+        GameObject Breed(GameObject parent1, GameObject parent2)
         {
-                GameObject offspring = population[listIndex];
-
+                GameObject offspring = Instantiate(botPrefab,transform.position,Quaternion.identity);
+                offspring.SetActive(false);
+                offspring.transform.parent = botContainer;
                 Brain brain = offspring.GetComponent<Brain>();
 
                 brain.Init();
@@ -57,21 +54,49 @@ public class PopulationManager : MonoBehaviour
                                 parent2.GetComponent<Brain>().dna
                         );
                 }
+                return offspring;
         }
 
         void BreedNewPopulation()
         {
                 List<GameObject> sortedList =
                         population.OrderBy(bot => FitnessFunction(bot)).ToList();
+                population.Clear();
 
-                int startingPos = sortedList.Count - (int)(sortedList.Count / 2.0f) - 1;
-
-                for (int index = startingPos - 1; index < sortedList.Count - 1; index++)
+                for (int index = sortedList.Count / 2; index < sortedList.Count - 1; index++)
                 {
-                       Breed(sortedList[index], sortedList[index  + 1], index);
-                        Breed(sortedList[index + 1], sortedList[index], index + 1);
+                       population.Add(Breed(sortedList[index], sortedList[index  + 1]));
+                       population.Add(Breed(sortedList[index + 1], sortedList[index]));
+                }
+                for(int i =0; i < sortedList.Count; i++)
+                {
+                        Destroy(sortedList[i].gameObject);
                 }
 
                 generation++;
+                InitEnemies();
+        }
+
+        private void InitEnemies()
+        {
+                for (int i = 0; i < populationSize; i++)
+                {
+                        Brain brain = population[i].GetComponent<Brain>();
+                        for (int j = 0; j < populationSize; j++)
+                        {
+                                if (i == j)
+                                        continue;
+                                brain.fellowMinions.Add(population[j]);
+                        }
+
+                        population[i].GetComponent<EnemyController>().projectilePool = projectilePool;
+                        brain.Init();
+                        population[i].transform.position =
+                                new Vector3(
+                                        brain.dna.entrance.x,
+                                        brain.dna.entrance.y,
+                                        0
+                               );
+                }
         }
 }

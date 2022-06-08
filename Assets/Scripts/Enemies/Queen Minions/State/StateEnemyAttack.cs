@@ -14,14 +14,17 @@ public class StateEnemyAttack : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
+                state = STATE.enemyAttack;
                 successGuess = mathHelper.GetSuccessGuess();
                 controller = myGameObject.GetComponent<EnemyController>();
+                Debug.Log("ATTACK " + successGuess.ToString());
         }
 
         public override void Update()
         {
                 base.Update();
                 float distance = Vector2.Distance(myGameObject.transform.position, objective.transform.position);
+
                 if (controller.attackRange < distance)
                 {
                         stage = STAGE.Exit;

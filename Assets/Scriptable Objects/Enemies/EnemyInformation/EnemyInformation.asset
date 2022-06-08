@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EnemyInformation
   m_EditorClassIdentifier: 
   attack: 1
-  hp: 30
-  attackSpeed: 0.6
+  hp: 10
+  attackSpeed: 1
   moveSpeed: 2
   defense: 1
-  attackRange: 5
+  attackRange: 10
   healRate: 0.5
