@@ -14,6 +14,8 @@ public class StateEnemyFlee : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
+                Debug.Log("FLEE");
+                state = STATE.enemyFlee;
                 escapeFrames = (int) (100 * brain.dna.fear);
                 initialSuccessGuess = mathHelper.GetSuccessGuess();
         }

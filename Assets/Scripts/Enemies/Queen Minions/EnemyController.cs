@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
  #region Attributes
         #region Serialized Fields
         [SerializeField] public EnemyInformation enemyInformation;
+        
         #endregion
 
         #region  EnemyStats
@@ -24,7 +25,13 @@ public class EnemyController : MonoBehaviour
         public bool canHeal = true;
         public bool canAttack = true;
         #endregion
- #endregion
+
+        #region Object Pooling
+        public Transform projectilePool;
+        public Queue<GameObject> projectiles;
+
+        #endregion
+#endregion
 
         // Start is called before the first frame update
         void Start()
@@ -37,6 +44,11 @@ public class EnemyController : MonoBehaviour
                 this.defense = enemyInformation.defense;
                 this.attackRange = enemyInformation.attackRange;
                 this.healRate = enemyInformation.healRate;
+                projectiles = new Queue<GameObject>();
+                for(int i = 0; i < projectilePool.childCount; i++)
+                {
+                        projectiles.Enqueue(projectilePool.GetChild(i).gameObject);
+                }
         }
 
         public IEnumerator HealCooldown()
@@ -57,6 +69,35 @@ public class EnemyController : MonoBehaviour
         public void Attack(GameObject objective)
         {
                 canAttack = false;
+                GameObject projectile = projectiles.Dequeue();
+                projectile.transform.position = transform.position;
+ 
+                Vector3 direction = objective.transform.position - transform.position;
+
+                projectile.GetComponent<EnemyProjectile>().enemyController = this;
+                projectile.GetComponent<EnemyProjectile>().direction = direction;
+                projectile.GetComponent<EnemyProjectile>().damage = this.attack;
+                projectile.SetActive(true);
+
                 StartCoroutine(AttackCooldown());
+        }
+
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+                if (collision.gameObject.tag == "player projectile")
+                {
+                        int totalDamage = collision.gameObject.GetComponent<PlayerProjectile>().damage;
+                        totalDamage = (int)( totalDamage * defense);
+
+                        if (totalDamage <= 0)
+                                totalDamage = 1;
+
+                        this.hp -= collision.gameObject.GetComponent<PlayerProjectile>().damage;
+
+                        if( hp <= 0)
+                        {
+                                this.gameObject.SetActive(false);
+                        }
+                }
         }
 }

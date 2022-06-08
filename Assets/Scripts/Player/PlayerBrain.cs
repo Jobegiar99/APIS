@@ -7,6 +7,7 @@ public class PlayerBrain : MonoBehaviour
         public Dictionary<ItemInformation, int> inventory;
 
         [SerializeField] public PlayerStats playerStats;
+        [SerializeField] public WeaponController weaponController;
         public int currentHP;
         public int defense;
         public float moveSpeed;

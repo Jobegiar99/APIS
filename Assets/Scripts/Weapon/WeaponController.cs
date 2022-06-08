@@ -5,15 +5,17 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
         [SerializeField] public WeaponStats weaponStats;
+        [SerializeField] public PlayerWeaponBehavior weaponBehavior;
 
         public State state;
         public int damage;
         public float cooldown;
         public float ammo;
         public bool canAttack = false;
-        
+
         // Start is called before the first frame update
-        void Start()
+
+        void OnEnable()
         {
                 state = new StateWeaponAttack(this.gameObject);
                 damage = weaponStats.damage;

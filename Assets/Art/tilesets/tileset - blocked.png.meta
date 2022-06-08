@@ -1,0 +1,984 @@
+fileFormatVersion: 2
+guid: 82ea568a684645c43a6ff4cf91191ceb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tileset - blocked_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 754
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a53ca5ba84e3e4889580a4ca2c7ec0
+      internalID: -1241804111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_27
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 754
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50375ebecb28a4342aca02dd4b57aeae
+      internalID: -734134773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_28
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 754
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb96cf8ae1d2a644f854edc809f0bb56
+      internalID: 2116268830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_53
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 717
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d52255149b1716349a0eec52560413b0
+      internalID: -1078697744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_54
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 717
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d36fa034319a7b4e9b5c2d75b972d92
+      internalID: -82779537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_55
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 717
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5861435d2291c541bb1deed78c0132f
+      internalID: -2115202549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 680
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b17068eea79cd542b8d60e07ecd3524
+      internalID: -2015723702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_81
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 680
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d3501221c8461448b1280e1e418d76
+      internalID: 1693279571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_82
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 680
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f57bcc3808f301845b38b4625ae0a983
+      internalID: 473963071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 643
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf8fe6eb0b554a49ae14f96d9fca7a3
+      internalID: -770698953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_109
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 643
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a340ca705ef97294fbc4f2df64fd2856
+      internalID: -204721342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset - blocked_110
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 643
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84bf16f09f4a8843ada13347170f1d2
+      internalID: -1104930524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tileset - blocked_510: 1558797654
+      tileset - blocked_271: 1294264728
+      tileset - blocked_91: -1486185451
+      tileset - blocked_289: 1785433913
+      tileset - blocked_171: 705553175
+      tileset - blocked_558: 87595671
+      tileset - blocked_426: -151752246
+      tileset - blocked_449: -1701612804
+      tileset - blocked_49: -467978667
+      tileset - blocked_291: 1276318136
+      tileset - blocked_437: 1246883691
+      tileset - blocked_24: 1078426839
+      tileset - blocked_239: -1901275282
+      tileset - blocked_513: 1028996273
+      tileset - blocked_9: -885892234
+      tileset - blocked_317: 1820011966
+      tileset - blocked_301: -118066524
+      tileset - blocked_142: -1973668435
+      tileset - blocked_129: -301020771
+      tileset - blocked_522: -2104787889
+      tileset - blocked_46: 176639305
+      tileset - blocked_327: 352574432
+      tileset - blocked_14: -1098234142
+      tileset - blocked_117: -978959462
+      tileset - blocked_20: -335383516
+      tileset - blocked_312: 2051625366
+      tileset - blocked_398: -418312925
+      tileset - blocked_386: -1021399722
+      tileset - blocked_501: -1569711908
+      tileset - blocked_282: 96420101
+      tileset - blocked_530: 628923166
+      tileset - blocked_35: 646409035
+      tileset - blocked_137: -1578002656
+      tileset - blocked_488: 731794783
+      tileset - blocked_165: 1489267968
+      tileset - blocked_356: -772008623
+      tileset - blocked_29: -241810189
+      tileset - blocked_230: 824609810
+      tileset - blocked_189: 1544338869
+      tileset - blocked_432: 1221071703
+      tileset - blocked_549: 1179173879
+      tileset - blocked_229: 860683874
+      tileset - blocked_4: 1046265716
+      tileset - blocked_290: -2092575649
+      tileset - blocked_131: 1830530531
+      tileset - blocked_373: -1635185882
+      tileset - blocked_476: 1680149817
+      tileset - blocked_213: -38853082
+      tileset - blocked_85: -1220539226
+      tileset - blocked_422: -824348833
+      tileset - blocked_341: -1648212862
+      tileset - blocked_369: 1506673928
+      tileset - blocked_302: 1615250646
+      tileset - blocked_521: 453227174
+      tileset - blocked_378: -1387574614
+      tileset - blocked_452: -111878389
+      tileset - blocked_316: -1344707030
+      tileset - blocked_284: 2081048781
+      tileset - blocked_207: 2027189912
+      tileset - blocked_503: 1297160699
+      tileset - blocked_500: -1315234608
+      tileset - blocked_541: 1294670908
+      tileset - blocked_19: 1263156072
+      tileset - blocked_262: 497167355
+      tileset - blocked_444: 1065405709
+      tileset - blocked_467: -2070914233
+      tileset - blocked_134: 1699842669
+      tileset - blocked_114: 1571583980
+      tileset - blocked_34: 1729645763
+      tileset - blocked_351: -1121905688
+      tileset - blocked_234: -1929422971
+      tileset - blocked_98: -813365104
+      tileset - blocked_569: 91711606
+      tileset - blocked_556: 550922362
+      tileset - blocked_518: -315620287
+      tileset - blocked_22: 592709232
+      tileset - blocked_330: 738201932
+      tileset - blocked_58: -554829331
+      tileset - blocked_523: -835757523
+      tileset - blocked_340: -201069139
+      tileset - blocked_166: 2141843422
+      tileset - blocked_367: 454041505
+      tileset - blocked_80: -2015723702
+      tileset - blocked_314: -658050328
+      tileset - blocked_391: -566387384
+      tileset - blocked_375: -1182463380
+      tileset - blocked_364: 546699625
+      tileset - blocked_2: 1690518081
+      tileset - blocked_273: -491265594
+      tileset - blocked_365: -1106794422
+      tileset - blocked_107: -2115393423
+      tileset - blocked_255: -1404823655
+      tileset - blocked_471: 825353943
+      tileset - blocked_577: 1654942609
+      tileset - blocked_495: -1314887251
+      tileset - blocked_274: 1938736529
+      tileset - blocked_174: -1539920713
+      tileset - blocked_527: 1263004228
+      tileset - blocked_244: 1008953882
+      tileset - blocked_106: -2112411960
+      tileset - blocked_148: -441693500
+      tileset - blocked_325: 756771463
+      tileset - blocked_257: 135610533
+      tileset - blocked_394: 686000579
+      tileset - blocked_76: 607841971
+      tileset - blocked_401: -209831493
+      tileset - blocked_180: 952679299
+      tileset - blocked_88: -1760651340
+      tileset - blocked_222: 892667286
+      tileset - blocked_136: -1483074997
+      tileset - blocked_372: -1522724761
+      tileset - blocked_531: -1164687715
+      tileset - blocked_204: 464371564
+      tileset - blocked_336: -388671690
+      tileset - blocked_502: 981037569
+      tileset - blocked_154: -509817269
+      tileset - blocked_193: -313298240
+      tileset - blocked_542: -1960022464
+      tileset - blocked_379: 512583597
+      tileset - blocked_218: 971825195
+      tileset - blocked_353: -1436312863
+      tileset - blocked_463: 52258052
+      tileset - blocked_280: 338958997
+      tileset - blocked_40: -1542215093
+      tileset - blocked_42: 1039890652
+      tileset - blocked_585: -163604834
+      tileset - blocked_176: 774587429
+      tileset - blocked_436: 744021498
+      tileset - blocked_16: -192920782
+      tileset - blocked_524: -1533632731
+      tileset - blocked_286: 1671339617
+      tileset - blocked_581: 1228076083
+      tileset - blocked_410: 1983359719
+      tileset - blocked_528: 1779923533
+      tileset - blocked_339: -1130328030
+      tileset - blocked_402: -1717159855
+      tileset - blocked_434: 1141358423
+      tileset - blocked_125: -752828194
+      tileset - blocked_497: -155444173
+      tileset - blocked_519: -624584102
+      tileset - blocked_243: -410458126
+      tileset - blocked_572: -1718082509
+      tileset - blocked_68: -1459698172
+      tileset - blocked_54: -82779537
+      tileset - blocked_305: 149354565
+      tileset - blocked_32: -997595850
+      tileset - blocked_191: 945983077
+      tileset - blocked_412: 1004813389
+      tileset - blocked_533: 1845469872
+      tileset - blocked_43: 222306180
+      tileset - blocked_413: -1129980417
+      tileset - blocked_0: 227555457
+      tileset - blocked_60: 368344363
+      tileset - blocked_534: -146159792
+      tileset - blocked_3: -1785826155
+      tileset - blocked_576: -1549628303
+      tileset - blocked_350: 1206839457
+      tileset - blocked_10: 2135894819
+      tileset - blocked_441: -975790617
+      tileset - blocked_361: -1014460233
+      tileset - blocked_311: -1306467872
+      tileset - blocked_8: 665211335
+      tileset - blocked_254: 697513463
+      tileset - blocked_332: 727759084
+      tileset - blocked_214: -1515967894
+      tileset - blocked_82: 473963071
+      tileset - blocked_288: 1931871274
+      tileset - blocked_297: -1083172083
+      tileset - blocked_388: 672235756
+      tileset - blocked_99: 179282119
+      tileset - blocked_172: 999153554
+      tileset - blocked_6: -9280802
+      tileset - blocked_357: 1746510699
+      tileset - blocked_265: 634446721
+      tileset - blocked_50: 271114821
+      tileset - blocked_260: -1316545456
+      tileset - blocked_470: -1878300171
+      tileset - blocked_195: 1528927606
+      tileset - blocked_509: -562642170
+      tileset - blocked_292: 1480153898
+      tileset - blocked_557: -124820931
+      tileset - blocked_324: 1126120198
+      tileset - blocked_160: 2050578767
+      tileset - blocked_308: 888800956
+      tileset - blocked_550: 1595607770
+      tileset - blocked_44: 1516291772
+      tileset - blocked_110: -1104930524
+      tileset - blocked_217: 1571937800
+      tileset - blocked_183: -640570841
+      tileset - blocked_333: -1760631988
+      tileset - blocked_225: 1183212114
+      tileset - blocked_56: -1235408390
+      tileset - blocked_455: 2129071866
+      tileset - blocked_376: -998220574
+      tileset - blocked_259: -2071935213
+      tileset - blocked_47: -1323181376
+      tileset - blocked_155: -1651684128
+      tileset - blocked_277: 1316138944
+      tileset - blocked_487: -152731126
+      tileset - blocked_464: 991214859
+      tileset - blocked_393: 1205421965
+      tileset - blocked_74: -1379380083
+      tileset - blocked_345: -154990490
+      tileset - blocked_465: 521264694
+      tileset - blocked_31: -928008318
+      tileset - blocked_192: -1502894057
+      tileset - blocked_1: 1954478546
+      tileset - blocked_397: 1702472246
+      tileset - blocked_343: 837590406
+      tileset - blocked_287: 1922140522
+      tileset - blocked_304: -917983758
+      tileset - blocked_473: 1451120894
+      tileset - blocked_228: -632811073
+      tileset - blocked_535: -1252071818
+      tileset - blocked_5: -1935735817
+      tileset - blocked_226: 721305821
+      tileset - blocked_37: 400825125
+      tileset - blocked_418: 195852924
+      tileset - blocked_276: -151240929
+      tileset - blocked_565: -349105704
+      tileset - blocked_102: 2021345178
+      tileset - blocked_570: 606120443
+      tileset - blocked_140: 1678144708
+      tileset - blocked_484: 1292950823
+      tileset - blocked_571: 1878714089
+      tileset - blocked_278: -1887323309
+      tileset - blocked_451: -1427054000
+      tileset - blocked_583: 1161545182
+      tileset - blocked_285: 1551153879
+      tileset - blocked_385: 2133008883
+      tileset - blocked_555: 10287917
+      tileset - blocked_300: -856237421
+      tileset - blocked_313: 450245987
+      tileset - blocked_309: 16335467
+      tileset - blocked_130: -430555818
+      tileset - blocked_51: 2003363422
+      tileset - blocked_182: 1333405396
+      tileset - blocked_439: -2006909194
+      tileset - blocked_104: 1032005476
+      tileset - blocked_408: 2002253624
+      tileset - blocked_270: -942996296
+      tileset - blocked_196: -1147268280
+      tileset - blocked_298: -1856840828
+      tileset - blocked_328: 384237847
+      tileset - blocked_349: 1457657433
+      tileset - blocked_493: -1980304846
+      tileset - blocked_96: 1783893267
+      tileset - blocked_382: -625925090
+      tileset - blocked_70: -767734833
+      tileset - blocked_132: -1052577363
+      tileset - blocked_170: -1705974495
+      tileset - blocked_366: 386100154
+      tileset - blocked_163: 1926466728
+      tileset - blocked_242: -2093256828
+      tileset - blocked_111: -268728911
+      tileset - blocked_122: -1865526836
+      tileset - blocked_250: -2076535969
+      tileset - blocked_396: -1220875428
+      tileset - blocked_322: -877742150
+      tileset - blocked_564: -663069434
+      tileset - blocked_90: -756296169
+      tileset - blocked_241: -1791952238
+      tileset - blocked_575: 879328137
+      tileset - blocked_221: 1714485266
+      tileset - blocked_246: -1537279448
+      tileset - blocked_498: 251820048
+      tileset - blocked_540: 1483021746
+      tileset - blocked_321: 543381649
+      tileset - blocked_508: 669225101
+      tileset - blocked_320: -1761629010
+      tileset - blocked_127: -1793603732
+      tileset - blocked_201: 768636334
+      tileset - blocked_438: 1777386924
+      tileset - blocked_188: 975229897
+      tileset - blocked_141: 544139392
+      tileset - blocked_515: 1648704320
+      tileset - blocked_7: -857780746
+      tileset - blocked_133: -214495446
+      tileset - blocked_168: -930801526
+      tileset - blocked_258: -991222796
+      tileset - blocked_566: -751542671
+      tileset - blocked_67: 1043866428
+      tileset - blocked_179: 130509927
+      tileset - blocked_187: 556929736
+      tileset - blocked_87: -1530430578
+      tileset - blocked_525: 1529747627
+      tileset - blocked_545: 531766444
+      tileset - blocked_443: 1609255124
+      tileset - blocked_198: 1492109976
+      tileset - blocked_461: 795458206
+      tileset - blocked_472: 1089828304
+      tileset - blocked_374: 1124665068
+      tileset - blocked_360: -1032798379
+      tileset - blocked_417: 1168191643
+      tileset - blocked_123: -1444064613
+      tileset - blocked_175: -790838188
+      tileset - blocked_494: 1078476312
+      tileset - blocked_93: -1748809706
+      tileset - blocked_18: 316119731
+      tileset - blocked_466: -537056173
+      tileset - blocked_424: 96460687
+      tileset - blocked_347: 1889824023
+      tileset - blocked_249: 1166915043
+      tileset - blocked_263: 311792288
+      tileset - blocked_28: 2116268830
+      tileset - blocked_94: 964306456
+      tileset - blocked_492: 1017980708
+      tileset - blocked_504: -1949871215
+      tileset - blocked_584: -184004284
+      tileset - blocked_105: 2063326120
+      tileset - blocked_380: 1133731003
+      tileset - blocked_539: -651273972
+      tileset - blocked_281: -2105880634
+      tileset - blocked_52: -2088288797
+      tileset - blocked_151: -2006839492
+      tileset - blocked_223: -616307040
+      tileset - blocked_334: 230983582
+      tileset - blocked_236: 2086061659
+      tileset - blocked_331: 700499190
+      tileset - blocked_421: -1074549404
+      tileset - blocked_512: 968305519
+      tileset - blocked_199: -1930363656
+      tileset - blocked_145: -994667429
+      tileset - blocked_404: -1453767998
+      tileset - blocked_73: 1584062739
+      tileset - blocked_423: 701021087
+      tileset - blocked_457: -2113544059
+      tileset - blocked_261: 861926296
+      tileset - blocked_86: -1902707081
+      tileset - blocked_177: -1578327252
+      tileset - blocked_12: -879805478
+      tileset - blocked_100: -174110969
+      tileset - blocked_219: -49736617
+      tileset - blocked_251: 318614950
+      tileset - blocked_279: -599045252
+      tileset - blocked_400: 355776840
+      tileset - blocked_419: -741433590
+      tileset - blocked_272: 1845503525
+      tileset - blocked_469: -1506853981
+      tileset - blocked_474: -806159148
+      tileset - blocked_526: -44305054
+      tileset - blocked_23: -2100900792
+      tileset - blocked_240: -1425905338
+      tileset - blocked_551: -2049301143
+      tileset - blocked_13: -1119317563
+      tileset - blocked_208: 1493036754
+      tileset - blocked_118: 541281080
+      tileset - blocked_81: 1693279571
+      tileset - blocked_370: -733444870
+      tileset - blocked_153: 472546165
+      tileset - blocked_116: 947698760
+      tileset - blocked_227: 1933659462
+      tileset - blocked_33: 388957322
+      tileset - blocked_403: 1161215256
+      tileset - blocked_115: -2074302287
+      tileset - blocked_248: 1883762481
+      tileset - blocked_232: -1425620352
+      tileset - blocked_543: -2057583665
+      tileset - blocked_563: -341940540
+      tileset - blocked_446: -1546194352
+      tileset - blocked_338: -1527963315
+      tileset - blocked_157: -449775178
+      tileset - blocked_83: -1843526948
+      tileset - blocked_485: 1933336553
+      tileset - blocked_237: -734958324
+      tileset - blocked_264: 1655721614
+      tileset - blocked_573: -917495446
+      tileset - blocked_101: 963260573
+      tileset - blocked_210: 1790890682
+      tileset - blocked_319: 140291013
+      tileset - blocked_362: -352893745
+      tileset - blocked_69: -1578165120
+      tileset - blocked_387: -736597296
+      tileset - blocked_159: -1447596386
+      tileset - blocked_415: 52103241
+      tileset - blocked_409: -1276713061
+      tileset - blocked_164: -443678302
+      tileset - blocked_209: 587223767
+      tileset - blocked_516: 42709292
+      tileset - blocked_520: 1487144199
+      tileset - blocked_59: -1440132304
+      tileset - blocked_315: -1914796767
+      tileset - blocked_562: 225453888
+      tileset - blocked_128: 77701744
+      tileset - blocked_561: -1644189599
+      tileset - blocked_215: -1550856182
+      tileset - blocked_65: 454198615
+      tileset - blocked_559: -1035091816
+      tileset - blocked_150: -1254674422
+      tileset - blocked_483: -1319273291
+      tileset - blocked_407: -796909830
+      tileset - blocked_266: -1625864210
+      tileset - blocked_84: -2008184264
+      tileset - blocked_194: -1867086202
+      tileset - blocked_538: -1663509708
+      tileset - blocked_433: 907140759
+      tileset - blocked_307: -1982275549
+      tileset - blocked_514: 1460820026
+      tileset - blocked_77: 1103695542
+      tileset - blocked_318: -1923910761
+      tileset - blocked_147: -1353673135
+      tileset - blocked_181: 566853460
+      tileset - blocked_78: 1667733285
+      tileset - blocked_480: 834104068
+      tileset - blocked_21: -1103385364
+      tileset - blocked_392: 827691242
+      tileset - blocked_389: 605674138
+      tileset - blocked_252: -1529241189
+      tileset - blocked_149: -536638048
+      tileset - blocked_479: -65171220
+      tileset - blocked_79: 2140604908
+      tileset - blocked_64: -94120411
+      tileset - blocked_158: 1135007565
+      tileset - blocked_152: 1402107474
+      tileset - blocked_89: 1079836572
+      tileset - blocked_92: 958410733
+      tileset - blocked_61: 383047663
+      tileset - blocked_344: 1290274451
+      tileset - blocked_390: -747649804
+      tileset - blocked_238: -787946382
+      tileset - blocked_352: 1637676924
+      tileset - blocked_427: -1663033527
+      tileset - blocked_143: -460634666
+      tileset - blocked_496: -127892499
+      tileset - blocked_303: 884368820
+      tileset - blocked_329: -1834974530
+      tileset - blocked_458: 1944822397
+      tileset - blocked_190: -1625091715
+      tileset - blocked_491: 1711175224
+      tileset - blocked_363: -203155785
+      tileset - blocked_337: -900289242
+      tileset - blocked_440: -686927423
+      tileset - blocked_113: -1338094453
+      tileset - blocked_178: -1845832191
+      tileset - blocked_233: 1305222591
+      tileset - blocked_580: 103115699
+      tileset - blocked_544: 47186673
+      tileset - blocked_453: -416094996
+      tileset - blocked_435: 329811277
+      tileset - blocked_460: 755609257
+      tileset - blocked_126: -113934938
+      tileset - blocked_66: 1717928670
+      tileset - blocked_256: -435539514
+      tileset - blocked_368: -1033761398
+      tileset - blocked_185: 281755610
+      tileset - blocked_475: -1642551532
+      tileset - blocked_296: 63766195
+      tileset - blocked_212: -2064757602
+      tileset - blocked_245: 1267663250
+      tileset - blocked_450: -586985148
+      tileset - blocked_275: 666476450
+      tileset - blocked_430: 176932957
+      tileset - blocked_507: 342525267
+      tileset - blocked_348: -738537791
+      tileset - blocked_489: -1381804113
+      tileset - blocked_456: -696050967
+      tileset - blocked_560: -1730519290
+      tileset - blocked_138: -2059375811
+      tileset - blocked_283: -1540898030
+      tileset - blocked_505: -632594583
+      tileset - blocked_269: 1968188393
+      tileset - blocked_299: 513034140
+      tileset - blocked_216: -1132895083
+      tileset - blocked_326: 1379213453
+      tileset - blocked_162: -1475376177
+      tileset - blocked_425: -212386445
+      tileset - blocked_482: 836096192
+      tileset - blocked_459: 1247073861
+      tileset - blocked_220: -800706866
+      tileset - blocked_25: -1227830642
+      tileset - blocked_268: 518407612
+      tileset - blocked_306: 794301104
+      tileset - blocked_135: 299471860
+      tileset - blocked_144: 1240080751
+      tileset - blocked_45: -1771354123
+      tileset - blocked_11: -1291177544
+      tileset - blocked_121: 2144576446
+      tileset - blocked_27: -734134773
+      tileset - blocked_429: 806713439
+      tileset - blocked_431: -169902617
+      tileset - blocked_548: -1383804336
+      tileset - blocked_506: 894234311
+      tileset - blocked_48: -1643600211
+      tileset - blocked_39: 659036227
+      tileset - blocked_447: 28985365
+      tileset - blocked_224: -1734102163
+      tileset - blocked_119: 1344364904
+      tileset - blocked_395: 437452648
+      tileset - blocked_103: 570807583
+      tileset - blocked_568: 643926417
+      tileset - blocked_358: -541953412
+      tileset - blocked_481: -1071841027
+      tileset - blocked_323: 743313121
+      tileset - blocked_354: -11900775
+      tileset - blocked_529: 1766139381
+      tileset - blocked_75: 1088871917
+      tileset - blocked_346: -2022435662
+      tileset - blocked_371: -357986236
+      tileset - blocked_355: -1474956612
+      tileset - blocked_267: -269249436
+      tileset - blocked_511: -15502314
+      tileset - blocked_36: -1816896130
+      tileset - blocked_454: -945782456
+      tileset - blocked_537: 1584567849
+      tileset - blocked_205: -1245843235
+      tileset - blocked_38: 548790305
+      tileset - blocked_420: -1125380400
+      tileset - blocked_428: 1556295607
+      tileset - blocked_416: -2081219894
+      tileset - blocked_186: -1983849668
+      tileset - blocked_536: -778462893
+      tileset - blocked_567: -1479920889
+      tileset - blocked_448: 2024279695
+      tileset - blocked_445: 716735828
+      tileset - blocked_486: 1106719190
+      tileset - blocked_517: 293849252
+      tileset - blocked_41: -2146106927
+      tileset - blocked_553: -909653722
+      tileset - blocked_578: -1491037952
+      tileset - blocked_184: -1990254106
+      tileset - blocked_167: 284733176
+      tileset - blocked_381: -1306177943
+      tileset - blocked_384: 462285704
+      tileset - blocked_108: -770698953
+      tileset - blocked_120: 15800505
+      tileset - blocked_247: -1326521209
+      tileset - blocked_124: 115558806
+      tileset - blocked_579: 940809330
+      tileset - blocked_200: 359810181
+      tileset - blocked_411: -850836342
+      tileset - blocked_202: -83257010
+      tileset - blocked_253: 1464083010
+      tileset - blocked_552: -522817104
+      tileset - blocked_442: 907111466
+      tileset - blocked_197: 579477331
+      tileset - blocked_499: -1360403092
+      tileset - blocked_55: -2115202549
+      tileset - blocked_414: 1258529019
+      tileset - blocked_211: 1813989020
+      tileset - blocked_406: 847759954
+      tileset - blocked_15: 1215300147
+      tileset - blocked_30: -308034427
+      tileset - blocked_468: 2129763840
+      tileset - blocked_203: 1429054974
+      tileset - blocked_72: 872118563
+      tileset - blocked_53: -1078697744
+      tileset - blocked_231: -255737075
+      tileset - blocked_161: -903623097
+      tileset - blocked_532: -1107609297
+      tileset - blocked_62: 470547206
+      tileset - blocked_582: 586252010
+      tileset - blocked_95: -1417976618
+      tileset - blocked_156: 1297897615
+      tileset - blocked_399: 244954867
+      tileset - blocked_383: 2017268661
+      tileset - blocked_377: -367426315
+      tileset - blocked_173: -1030321953
+      tileset - blocked_206: 1674138166
+      tileset - blocked_293: 28771197
+      tileset - blocked_546: -182267531
+      tileset - blocked_139: 1092862355
+      tileset - blocked_462: -226537835
+      tileset - blocked_477: -1071167564
+      tileset - blocked_235: 369748423
+      tileset - blocked_294: -2004622395
+      tileset - blocked_554: 1951781598
+      tileset - blocked_63: -398858252
+      tileset - blocked_17: -827437234
+      tileset - blocked_109: -204721342
+      tileset - blocked_359: 1277791883
+      tileset - blocked_490: -1276486437
+      tileset - blocked_295: -456992975
+      tileset - blocked_405: -461716341
+      tileset - blocked_26: -1241804111
+      tileset - blocked_574: 914172654
+      tileset - blocked_57: -1646256622
+      tileset - blocked_169: -1453238947
+      tileset - blocked_146: -304728190
+      tileset - blocked_478: 1441942275
+      tileset - blocked_97: 327065433
+      tileset - blocked_547: -1969525316
+      tileset - blocked_112: 2012121191
+      tileset - blocked_342: -1053567175
+      tileset - blocked_310: -1703566775
+      tileset - blocked_335: -1445048163
+      tileset - blocked_71: -300922709
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

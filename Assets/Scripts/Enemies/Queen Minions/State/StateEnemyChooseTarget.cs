@@ -12,15 +12,21 @@ public class StateEnemyChooseTarget : StateEnemyState
         public override void Enter()
         {
                 base.Enter();
+                state = STATE.enemyChooseTarget;
                 for (int i = 0; i < 3; i++)
-                        if(SelectTarget(brain.dna.objectives[i]))
-                                break;              
+                        if (SelectTarget(brain.dna.objectives[i]))
+                        {
+                                stage = STAGE.Exit;
+                                break;
+                        }
+                
         }
 
         public override void Exit()
         {
+
                 base.Exit();
-               nextState = new StateEnemyMoveToTarget(myGameObject,objective);
+                nextState = new StateEnemyMoveToTarget(myGameObject,objective);
         }
 
         private bool SelectTarget(char currentOption)
@@ -29,12 +35,13 @@ public class StateEnemyChooseTarget : StateEnemyState
                         case 'P':
                                 {
                                         objective = GameObject.Find("Player");
+                                        
                                         return true;
                                 }
                         case 'B':
                                 {
                                         int beaconAmount = (int) GameObject.Find("LevelManager")
-                                                .GetComponent<LevelManager>().info.beaconAmount;
+                                                .GetComponent<LevelManager>().levelInformation.beaconAmount;
 
                                         if (beaconAmount == 0)
                                                 return false;
