@@ -16,7 +16,7 @@ public class DNA
         public float tolerance;
         public float weakness;
         private List<char> enemyTypes = new List<char> { 'A', 'B', 'C' };
-        List<char> objectiveTypes = new List<char>() { 'P', 'B', 'T' };
+        List<char> objectiveTypes = new List<char>() { 'P', 'P', 'P' };
         List<Vector2Int> entrances;
         #endregion
 
@@ -35,8 +35,6 @@ public class DNA
         public void RandomizeGenes(ref List<Vector2Int> entrances)
         {
                 this.entrances = entrances;
-                FillObjectives();
-                
                 type = enemyTypes[Random.Range(0, enemyTypes.Count)];
                 entrance = entrances[Random.Range(0, entrances.Count)];
                 hostility = Random.Range(0.01f, 1f);
@@ -67,24 +65,8 @@ public class DNA
 
         public void Mutate()
         {
-                
-                switch(Random.Range(0, 3) ){
-                        case 0:
-                                {
-                                        type = enemyTypes[Random.Range(0, enemyTypes.Count)];
-                                        break;
-                                }
-                        case 1:
-                                {
-                                        entrance = entrances[Random.Range(0, entrances.Count)];
-                                        break;
-                                }
-                        case 2:
-                                {
-                                        FillObjectives();
-                                        break;
-                                }
-                }
+
+                entrance = entrances[Random.Range(0, entrances.Count)];
 
                 switch (Random.Range(0, 4))
                 {
@@ -110,20 +92,6 @@ public class DNA
                                         tolerance = Random.Range(0.1f, 0.9f);
                                         break;
                                 }
-                }
-        }
-
-        private void FillObjectives()
-        {
-                //P = Player
-                //B = Beacon
-                //T = Towers A.K.A Placeables
-                List<char> objectiveTypesTemp = objectiveTypes;
-                for (int i = 0; i < 3; i++)
-                {
-                        int index = Random.Range(0, objectiveTypes.Count);
-                        objectives[i] = objectiveTypes[index];
-                        objectiveTypes.RemoveAt(index);
                 }
         }
         #endregion

@@ -28,7 +28,7 @@ public class EnemyProjectile : MonoBehaviour
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-                if (collision.gameObject.tag == "Player")
+                if (collision.gameObject.tag == "enemy projectile" || collision.gameObject.tag == "enemy")
                         return;
                 this.gameObject.SetActive(false);
         }

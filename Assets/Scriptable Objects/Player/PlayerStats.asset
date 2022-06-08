@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   attack: 1
-  cooldown: 1
+  cooldown: 0.15
   hp: 20
   defense: 1
   moveSpeed: 6

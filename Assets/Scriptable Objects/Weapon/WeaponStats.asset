@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WeaponStats
   m_EditorClassIdentifier: 
   damage: 1
-  cooldown: 1
+  cooldown: 0.15
   ammo: 20

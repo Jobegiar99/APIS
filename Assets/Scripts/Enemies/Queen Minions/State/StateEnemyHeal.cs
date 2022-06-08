@@ -11,7 +11,6 @@ public class StateEnemyHeal : StateEnemyState
         {
                 base.Enter();
                 state = STATE.enemyHeal;
-                Debug.Log("HEAL");
         }
         public override void Update()
         {

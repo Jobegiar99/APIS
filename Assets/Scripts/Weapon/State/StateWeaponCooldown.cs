@@ -23,13 +23,14 @@ public class StateWeaponCooldown : StateWeaponState
                 
                 if (!weaponController.canAttack)
                         return;
-
+                
                 stage = STAGE.Exit;
         }
 
         public override void Exit()
         {
                 base.Exit();
+                
                 nextState = new StateWeaponAttack(myGameObject);
         }
 

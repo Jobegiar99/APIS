@@ -8,6 +8,7 @@ public class PlayerBrain : MonoBehaviour
 
         [SerializeField] public PlayerStats playerStats;
         [SerializeField] public WeaponController weaponController;
+        [SerializeField] TMPro.TextMeshProUGUI playerHP;
         public int currentHP;
         public int defense;
         public float moveSpeed;
@@ -16,6 +17,7 @@ public class PlayerBrain : MonoBehaviour
         // Start is called before the first frame update
         void Start()
         {
+                playerHP.text = playerStats.hp.ToString();
                 currentHP = playerStats.hp;
                 defense = playerStats.defense;
                 moveSpeed = playerStats.moveSpeed;
@@ -49,19 +51,20 @@ public class PlayerBrain : MonoBehaviour
         }
 
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-                if (collision.tag != "EnemyProjectile")
+                if (collision.gameObject.tag != "enemy projectile")
                         return;
-
+                
                 if (!canGetDamaged)
                         return;
 
-                int damage = 0; //projectile damage
+                GetComponent<Animator>().SetTrigger("player_damaged");
                 canGetDamaged = false;
-                currentHP -= damage;
+                currentHP --;
+                playerHP.text = currentHP.ToString();
                 if (currentHP <= 0)
-                        Debug.Log("GAME OVER");
+                        GameObject.Find("UIManager").GetComponent<UIManager>().EnableUIElement(5);
                 else
                         Invoke("EnableDamage", 1);
         }
